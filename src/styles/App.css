@@ -1,0 +1,71 @@
+/* Ensure the App container fills the viewport */
+.App {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  min-height: 100vh; /* Ensure the app takes at least 100% of the viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content area */
+main {
+  flex-grow: 1; /* Allow the main content to grow and fill available space */
+  margin-left: 250px; /* To account for the fixed sidebar */
+  padding: 2rem;
+  overflow-y: auto; /* Only show vertical scrollbar if content overflows */
+}
+
+/* Section content */
+section {
+  padding: 4rem 2rem;
+}
+
+/* Hero section styling */
+.hero {
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Grid layout for projects */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.project-item {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  main {
+    margin-left: 0;
+    padding-top: 60px; /* To account for the fixed header */
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+}

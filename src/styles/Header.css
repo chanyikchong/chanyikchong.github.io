@@ -1,0 +1,174 @@
+/* Sidebar for desktop - fixed and always visible */
+.desktop-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh; /* Full height for sidebar */
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    background-image: url('../assets/header_bg.jpg'); /* Background image for sidebar */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+}
+
+/* Header content inside sidebar (icon, name, menu) */
+.header-content {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Align content to the middle */
+    width: 100%; /* Make sure content spans the full width */
+    height: 100%; /* Ensure content fills the height of the sidebar */
+    background-color: rgb(0, 0, 0, 0.5); /* Add a semi-transparent background */
+}
+
+/* Icon styles */
+.header-icon img {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 80px; /* Adjust the icon size */
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.header-icon img:hover {
+    transform: scale(1.1); /* Slight enlarge on hover */
+}
+
+/* Menu items inside the sidebar */
+.header-nav {
+    display: flex;
+    flex-direction: column; /* Stack menu items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+.menu-item {
+    margin: 1rem 0;
+    text-align: center;
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth hover transition */
+}
+
+.menu-item a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+/* Hover effect for menu items */
+.menu-item:hover {
+    transform: scale(1.1); /* Slight enlarge on hover */
+    color: #f0f0f0; /* Change text color on hover */
+}
+
+/* Mobile header */
+.mobile-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Initial height for the mobile header */
+    display: flex;
+    justify-content: center; /* Center all content horizontally */
+    align-items: center;
+    background-image: url('../assets/header_bg.jpg'); /* Background image for mobile header */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1000;
+    transition: height 0.5s ease-in-out; /* Smooth height transition for dropdown */
+}
+
+/* When the menu is opened, the header expands with the dropdown animation */
+.mobile-header.open {
+    height: 100vh; /* Full-screen dropdown height */
+}
+
+/* Menu icon for mobile */
+.mobile-header .menu-icon {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-icon-bar {
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Menu Animation (Hamburger -> X) */
+.App-header.open .menu-icon-bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 10px);
+}
+
+.App-header.open .menu-icon-bar:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+.App-header.open .menu-icon-bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -10px);
+}
+
+/* Icon always visible and centered */
+.mobile-header .header-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050; /* Ensure it's above the background but below the menu icon */
+    transform: translateY(120px);
+    transition: transform 0.5s ease-in-out; /* Smooth transition for position */
+}
+
+/* Move the logo down when the menu is opened */
+.mobile-header.open .header-icon {
+    transform: translateY(0); /* Move down smoothly when the menu opens */
+}
+
+/* Mobile-specific navigation (dropdown menu) */
+.mobile-header .header-nav {
+    display: flex; /* Always display to enable smooth transitions */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(50px); /* Move the menu upwards initially */
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transitions */
+}
+
+/* When menu is opened, make the menu visible */
+.mobile-header.open .header-nav {
+    opacity: 1; /* Fade in the menu items */
+    transform: translateY(0); /* Move the menu items to the center smoothly */
+}
+
+.mobile-header.open .header-nav .menu-item {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.mobile-header.open .header-nav .menu-item a {
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.mobile-header.open .header-nav .menu-item:hover {
+    transform: scale(1.1);
+    color: #f0f0f0;
+}
