@@ -1,0 +1,41 @@
+/* Star field styling */
+.star-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0; /* Behind the content */
+    pointer-events: none; /* Ensure stars don't block interaction */
+}
+
+.star {
+    position: absolute; /* Necessary for top/left positioning */
+    background-color: white;
+    border-radius: 50%; /* Make the stars circular */
+    opacity: 0.8;
+    animation: float var(--float-duration) ease-in-out infinite, twinkle var(--twinkle-duration) ease-in-out infinite; /* Combine floating and twinkling */
+    transition: top 0.3s ease-out, left 0.3s ease-out; /* Smooth movement for mouse interaction */
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    50% {
+        transform: translate(var(--random-x), var(--random-y)); /* Randomize each star's movement */
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.8; /* Base opacity */
+    }
+    50% {
+        opacity: 0.4; /* Lower opacity to create the twinkling effect */
+    }
+}

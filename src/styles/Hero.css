@@ -1,0 +1,107 @@
+/* Hero section styling */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 1100px;
+}
+
+.hero-name-role-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-hi {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.hero-intro {
+    font-size: 4rem;
+    color: white;
+}
+
+.hero-name {
+    font-size: 4rem;
+    color: #cd5ff8; /* Purple color */
+    margin: 0.5rem 0;
+}
+
+.hero-description {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.hero-description .hero-role {
+    color: #A020F0;
+    font-weight: bold;
+    font-size: 2.0rem;
+    margin-top: 10px;
+}
+
+/* Styling for the new about section */
+.hero-about {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /*max-width: 1100px; !* Adjust the maximum width *!*/
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-about ul {
+    list-style: none; /* Remove default list bullets */
+    padding: 0;
+    margin: 20px 0;
+}
+
+.hero-about li {
+    display: flex;
+    align-items: flex-start; /* Align icon and text */
+    text-align: left;
+    font-size: 1.4rem; /* Set font size */
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #dcdcdc; /* Light text color */
+}
+
+.hero-about .list-icon {
+    font-size: 1.4rem; /* Match the icon size to text size */
+    margin-right: 10px; /* Spacing between icon and text */
+    color: #A020F0; /* Purple color for the icons */
+    display: flex;
+    align-items: center; /* Vertically center the icon */
+    height: 1.6em; /* Match the icon height to the text line height */
+}
+
+.hero-about li p {
+    margin: 0; /* Remove margins from paragraphs inside the list items */
+}
+
+.wave {
+    display: inline-block;
+    animation: wave-animation 2s infinite;
+    transform-origin: 70% 70%; /* Pivot point for the wave */
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    30% { transform: rotate(14deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+    60% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+}
