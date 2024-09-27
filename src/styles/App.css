@@ -10,11 +10,18 @@
 
 /* Main content area */
 main {
-  height: 100vh;
-  flex-grow: 1; /* Allow the main content to grow and fill available space */
-  margin-left: 250px; /* To account for the fixed sidebar */
+  position: relative;
+  flex-grow: 1;
+  margin-left: 180px; /* Adjusted for sidebar */
   padding: 2rem;
-  overflow-y: auto; /* Only show vertical scrollbar if content overflows */
+  max-width: 100%;
+  overflow-y: auto; /* Allow vertical scrolling for content if necessary */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure footer is pushed to the bottom */
+  height: calc(100vh - 70px); /* Adjust to the viewport height minus header size */
+  background: transparent;
+  z-index: 1;
 }
 
 /* Section content */
@@ -32,25 +39,13 @@ h2 {
   margin-bottom: 2rem;
 }
 
-/* Grid layout for projects */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.project-item {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   main {
     margin-left: 0;
     padding-top: 60px; /* To account for the fixed header */
+    height: auto; /* Allow natural height growth on mobile */
+    /*padding-bottom: 100px; !* Ensure there’s enough space for the footer *!*/
   }
 
   h1 {

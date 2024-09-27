@@ -1,0 +1,55 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 180px;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    background: none;
+    color: white;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: center; /* Centered for the icons in a row */
+}
+
+.footer-icons {
+    display: flex; /* Align icons in a row */
+    justify-content: space-around; /* Distribute space between icons */
+    margin: 0.5rem;
+    /*margin-left: 0.5rem;*/
+    /*margin-right: 0.5rem;*/
+    /*margin-bottom: 0.5rem; !* Add some margin below the icons *!*/
+}
+
+.footer-icons a {
+    color: white;
+    font-size: 1.5rem; /* Adjust icon size */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
+}
+
+.footer-icons a:hover {
+    color: #f0f0f0; /* Hover effect */
+    transform: scale(1.2); /* Slight enlarge on hover */
+}
+
+
+@media (max-width: 768px) {
+    .footer {
+        position: static; /* Make it flow with content, not fixed */
+        width: 100%; /* Full width for mobile */
+        text-align: center;
+        padding: 0.5rem 0;
+        background-color: rgba(0, 0, 0, 0.5); /* Optional background color */
+    }
+
+    .footer-icons {
+        justify-content: center; /* Center icons in mobile */
+    }
+
+    .footer-icons a{
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+}

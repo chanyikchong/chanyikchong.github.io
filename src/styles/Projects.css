@@ -1,0 +1,27 @@
+/* Grid layout for projects */
+.projects {
+    height: 100%;
+}
+
+.project-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+    transition: all 0.5s ease-in-out; /* Ensure smooth scaling and height change */
+
+}
+
+.project-grid.no-grid{
+    /*display: flex;*/
+    gap: 0;
+}
+
+@media (max-width: 768px) {
+    .projects {
+        height: auto; /* Allow natural height growth on mobile */
+    }
+
+}

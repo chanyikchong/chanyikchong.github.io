@@ -49,50 +49,49 @@
     margin-top: 10px;
 }
 
-/* Styling for the new about section */
 .hero-about {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /*max-width: 1100px; !* Adjust the maximum width *!*/
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 150px;
 }
 
 .hero-about ul {
-    list-style: none; /* Remove default list bullets */
+    list-style: none;
     padding: 0;
     margin: 20px 0;
 }
 
 .hero-about li {
     display: flex;
-    align-items: flex-start; /* Align icon and text */
+    align-items: flex-start;
     text-align: left;
-    font-size: 1.4rem; /* Set font size */
+    font-size: 1.4rem;
     line-height: 1.6;
     margin-bottom: 15px;
-    color: #dcdcdc; /* Light text color */
+    color: #dcdcdc;
 }
 
 .hero-about .list-icon {
-    font-size: 1.4rem; /* Match the icon size to text size */
-    margin-right: 10px; /* Spacing between icon and text */
-    color: #A020F0; /* Purple color for the icons */
+    font-size: 1.4rem;
+    margin-right: 10px;
+    color: #A020F0;
     display: flex;
-    align-items: center; /* Vertically center the icon */
-    height: 1.6em; /* Match the icon height to the text line height */
+    align-items: center;
+    height: 1.6em;
 }
 
 .hero-about li p {
-    margin: 0; /* Remove margins from paragraphs inside the list items */
+    margin: 0;
 }
 
 .wave {
     display: inline-block;
     animation: wave-animation 2s infinite;
-    transform-origin: 70% 70%; /* Pivot point for the wave */
+    transform-origin: 70% 70%;
 }
 
 @keyframes wave-animation {
@@ -104,4 +103,61 @@
     50% { transform: rotate(10deg); }
     60% { transform: rotate(0deg); }
     100% { transform: rotate(0deg); }
+}
+
+/* Mobile responsiveness */
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        padding: 0 15px;
+        height: auto; /* Let the height adjust to content */
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-hi {
+        font-size: 1.5rem; /* Smaller font for mobile */
+    }
+
+    .hero-intro {
+        font-size: 2rem; /* Adjust intro font size for mobile */
+        text-align: left;
+    }
+
+    .hero-name {
+        font-size: 2rem; /* Adjust name font size */
+    }
+
+    .hero-description {
+        font-size: 1rem; /* Adjust description font size */
+    }
+
+    .hero-description .hero-role {
+        font-size: 1.3rem; /* Adjust the role typing size */
+    }
+
+    .hero-about {
+        margin-top: 20px; /* Reduce margin on mobile */
+        margin-bottom: 20px;
+    }
+
+    .hero-about li {
+        font-size: 1rem; /* Adjust text size for mobile */
+    }
+
+    .hero-about .list-icon {
+        font-size: 1rem; /* Adjust icon size for mobile */
+    }
+}
+
+@media (max-width: 392px) {
+    .hero-intro {
+        font-size: 1.6rem; /* Adjust name font size */
+    }
+    .hero-name {
+        font-size: 1.8rem; /* Adjust name font size */
+    }
 }

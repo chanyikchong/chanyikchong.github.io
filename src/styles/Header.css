@@ -3,7 +3,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 150px;
+    width: 180px;
     height: 100vh; /* Full height for sidebar */
     display: flex;
     flex-direction: column; /* Arrange items in a column */
@@ -13,7 +13,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 0;
+    padding-bottom: 100px;
 }
 
 /* Header content inside sidebar (icon, name, menu) */
@@ -147,8 +147,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1050; /* Ensure it's above the background but below the menu icon */
-    transform: translateY(120px);
+    /*z-index: 1050; !* Ensure it's above the background but below the menu icon *!*/
+    transform: translateY(95px);
     transition: transform 0.5s ease-in-out; /* Smooth transition for position */
 }
 
@@ -169,6 +169,7 @@
 
 /* When menu is opened, make the menu visible */
 .mobile-header.open .header-nav {
+    position: relative;
     opacity: 1; /* Fade in the menu items */
 }
 

@@ -43,16 +43,13 @@ function Header() {
                 {/* Navigation with divs */}
                 <nav className={`header-nav ${menuOpen ? 'open' : ''}`}>
                     <div className="menu-item">
-                        <a href="/">Home</a>
+                        <Link to="/" onClick={toggleMenu}>Home</Link>
                     </div>
                     <div className="menu-item">
-                        <a href="/about">About</a>
+                        <Link to="/resume" onClick={toggleMenu}>Résumé</Link>
                     </div>
                     <div className="menu-item">
-                        <a href="/projects">Projects</a>
-                    </div>
-                    <div className="menu-item">
-                        <a href="/contact">Contact</a>
+                        <Link to="/projects" onClick={toggleMenu}>Projects</Link>
                     </div>
                 </nav>
             </div>

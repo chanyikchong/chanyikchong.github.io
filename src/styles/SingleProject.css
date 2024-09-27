@@ -1,0 +1,69 @@
+.single-project-item {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    flex-grow: 1;
+    transition: all 0.5s ease-in-out; /* Apply smooth transition to all properties */
+    max-width: 350px;
+}
+
+.single-project-item.abstract {
+    height: 150px;
+    width: 350px;
+    flex-grow: 1;
+    opacity: 1;
+    margin: 1rem;
+    transition: all 0.5s ease-in-out; /* Ensure smooth scaling and height change */
+}
+
+.single-project-item.open {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    z-index: 1000;
+    background-color: white;
+    padding: 2rem;
+    overflow-y: auto;
+    transition: all 0.5s ease-in-out; /* Smooth growth transition */
+}
+
+.single-project-item.close {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    /*display: none; !* Hide the project when in close mode *!*/
+    transition: all 0.5s ease-in-out; /* Smooth growth transition */
+}
+
+.project-abstract {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    transition: all 0.5s ease-in-out; /* Smooth growth transition */
+}
+
+.project-abstract.abstract {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.markdown-content {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    transition: all 0.5s ease-in-out; /* Smooth growth transition */
+}
+
+.markdown-content.open {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    margin-top: 1rem;
+    overflow-y: auto;
+}

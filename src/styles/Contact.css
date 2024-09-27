@@ -1,0 +1,84 @@
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+    /*padding: 2rem;*/
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-bottom: 2px solid #00d8ff;
+    /*border-radius: 4px;*/
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    /*border: none;*/
+    border: 2px solid #00d8ff;
+    border-radius: 4px;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-bottom-color: #00d8ff;
+    background: transparent; /* Keep background transparent on focus */
+
+}
+
+input:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset; /* Maintain same background as the form */
+    -webkit-text-fill-color: white !important; /* Keep the text color white */
+    transition: background-color 5000s ease-in-out 0s; /* Prevent the yellow background flicker */
+}
+
+textarea {
+    resize: none;
+    height: 150px;
+}
+
+.submit-button {
+    padding: 1rem 2rem;
+    background-color: #00d8ff;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #00c3e2;
+}
+

@@ -18,7 +18,7 @@ function Hero() {
                             strings={[
                                 "PhD Candidate",
                                 "AI Enthusiast",
-                                // "Distributed Computing Expert",
+                                "Full Stack Developer",
                                 "Open Source Contributor"
                             ]}
                             typeSpeed={40}
