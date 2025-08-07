@@ -22,6 +22,8 @@
 @media (max-width: 768px) {
     .projects {
         height: auto; /* Allow natural height growth on mobile */
+        margin-top: 30px;
+        padding: 0;
     }
 
 }

@@ -2,7 +2,7 @@
 import React from 'react';
 import '../styles/Resume.css';
 import ProfilePic from '../assets/Image.jpg';
-import ResumePDF from '../assets/CV_for_freshers.pdf'; // Path to your resume PDF
+import ResumePDF from '../assets/Yichong_s_CV.pdf'; // Path to your resume PDF
 
 
 const Resume = () => {
@@ -51,22 +51,57 @@ const Resume = () => {
                     </div>
                 </div>
 
+                <h2>Research Experience</h2>
+                <div className="experience-section">
+                    <div className="experience-item">
+                        <div className="experience-company">
+                            <span className="affiliation_name">Imperial College London</span>
+                            <span className="position">Ph.D. Researcher</span>
+                        </div>
+                        <div className="experience-time">April 2022 - Present</div>
+                    </div>
+                    <ul className="experience-description">
+                        <li>
+                            Developed a collaborative AI system with early-exit neural networks and predictive models,
+                            enabling faster and more energy-efficient inference on edge devices without sacrificing
+                            accuracy.
+                        </li>
+                        <li>
+                            Enhanced the AI system with reinforcement learning and automatic change detection to
+                            maintain high performance even when network conditions and workloads shift unexpectedly.
+                        </li>
+                        <li>
+                            Built a dynamic scheduler using simulation and online traffic prediction, significantly
+                            improving task allocation and reducing service delays and failures under real-world
+                            conditions.
+                        </li>
+                    </ul>
+                </div>
+
                 <h2>Work Experience</h2>
                 <div className="experience-section">
                     <div className="experience-item">
                         <div className="experience-company">
                             <span className="affiliation_name">Imperial Consultants</span>
-                            <span className="position">Consultant</span>
+                            <span className="position">Full Stack Developer</span>
                         </div>
                         <div className="experience-time">Sep 2022 - Oct 2024</div>
                     </div>
-                    <p className="experience-description">
-                        Working as a full stack developer to help <a href="https://www.seeng-s.co.uk/" target="_blank"
-                                                                     rel="noreferrer">S.e.eng LTD</a>
-                        to build their platform SIMON. This include building the backend server to host their algorithm
-                        to analyse the PV panel data and designing the frontend website to provide a UI to S.e.eng's
-                        customer to maintain their PV panels.
-                    </p>
+                    <ul className="experience-description">
+                        <li>
+                            Led the design, development, and cloud deployment of SiMON, a solar anomaly detection
+                            platform used by <a href="https://www.seeng-s.co.uk/" target="_blank"
+                                                rel="noreferrer">SEENG LTD </a> to monitor large-scale solar fields.
+                        </li>
+                        <li>
+                            Delivered a complete web-based application integrating client-provided detection algorithms,
+                            enabling real-time monitoring and field diagnostics.
+                        </li>
+                        <li>
+                            Supported SEENG LTD in securing new funding and external contracts by providing a robust,
+                            production-ready system that demonstrated clear business value.
+                        </li>
+                    </ul>
 
                     <div className="experience-item">
                         <div className="experience-company">
@@ -75,22 +110,20 @@ const Resume = () => {
                         </div>
                         <div className="experience-time">Nov 2020 - June 2022</div>
                     </div>
-                    <p className="experience-description">
-                        Designed AI systems to predict product quality and automatically generate reports on test
-                        failures.
-                        Technologies used: BERT, BiLSTM, CRF, Knowledge Graphs.
-                    </p>
-
-                    <div className="experience-item">
-                        <div className="experience-company">
-                            <span className="affiliation_name">China Construction Bank</span>
-                            <span className="position">FinTech Intern</span>
-                        </div>
-                        <div className="experience-time">July 2019 - Sep 2019</div>
-                    </div>
-                    <p className="experience-description">
-                        Analyzed financial demand of new energy vehicle market and proposed a service plan.
-                    </p>
+                    <ul className="experience-description">
+                        <li>
+                            Built and deployed AI systems for real-time monitoring of factory data, enabling early
+                            detection of quality issues in production lines.
+                        </li>
+                        <li>
+                            Developed interactive reporting tools to automate failure analysis and identify root causes,
+                            streamlining engineering workflows.
+                        </li>
+                        <li>
+                            Applied NLP models to extract insights from technical logs and built a searchable knowledge
+                            graph to support intelligent queries and decision-making.
+                        </li>
+                    </ul>
 
                     {/* Add more work here */}
                 </div>
@@ -100,26 +133,36 @@ const Resume = () => {
                     <div className="publication-item">
                         <ul>
                             <li className="publication-content">
+                                <span className="highlight-author">Y. Chen</span>, Z. Niu, M. Roveri, G. Casale. <a
+                                href="https://ieeexplore.ieee.org/abstract/document/11044557"
+                                target="_blank"
+                                rel="noreferrer">CEED: Collaborative Early Exit Neural Network Inference at the Edge</a>,
+                                in <i>Proc.of INFOCOM</i>, May 2025.
+                            </li>
+                            <li className="publication-content">
                                 S. Huang, K. Li, D. You, <span className="highlight-author">Y. Chen</span>, A. Lin, S.
-                                Liu, X. Li, and j. McCann, "WiMANS: A Benchmark Dataset for WiFi-based Multi-user
-                                Activity
-                                Sensing,"
-                                <i>arXiv preprint arXiv:2402.09430 (2024).</i>
+                                Liu, X. Li, and j. McCann, <a
+                                href="https://link.springer.com/chapter/10.1007/978-3-031-72946-1_5" target="_blank"
+                                rel="noreferrer">
+                                Wimans: A benchmark dataset for wifi-based multi-user activity sensing</a>,
+                                in <i>Proc.of ECCV</i>, Oct 2024.
                             </li>
 
                             <li className="publication-content">
-                                <span className="highlight-author">Y. Chen</span>, M. Roveri, S, Tuli and G. Casale,
-                                "Coupling QoS Co-Simulation with Online Adaptive Arrival Forecasting,"
-                                <i>2023 19th International Conference on Network and Service Management (CNSM)</i>
+                                <span className="highlight-author">Y. Chen</span>, M. Roveri, S, Tuli and G. Casale, <a
+                                href="https://ieeexplore.ieee.org/abstract/document/10327805" target="_blank"
+                                rel="noreferrer">
+                                Coupling QoS Co-Simulation with Online Adaptive Arrival Forecasting</a>, in <i>Proc.of
+                                IFIP/IEEE CNSM</i>, Nov 2023.
                             </li>
 
                             <li className="publication-content">
-                                <span className="highlight-author">Y. Chen</span> and G. Casale, "Deep Learning Models
-                                for
-                                Automated Identification of Scheduling Policies,"
-                                <i>2021 29th International Symposium on Modeling, Analysis, and Simulation of Computer
-                                    and
-                                    Telecommunication Systems (MASCOTS)</i>
+                                <span className="highlight-author">Y. Chen</span> and G. Casale, <a
+                                href="https://ieeexplore.ieee.org/abstract/document/9614298"
+                                target="_blank"
+                                rel="noreferrer">Deep Learning Models for Automated Identification of Scheduling
+                                Policies</a>, in <i>Proc.of IEEE MASCOTS</i>,
+                                Nov 2021.
                             </li>
                         </ul>
                     </div>

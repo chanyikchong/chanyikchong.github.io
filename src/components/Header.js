@@ -51,6 +51,9 @@ function Header() {
                     <div className="menu-item">
                         <Link to="/projects" onClick={toggleMenu}>Projects</Link>
                     </div>
+                    <div className="menu-item">
+                        <Link to="/tools" onClick={toggleMenu}>Tools</Link>
+                    </div>
                 </nav>
             </div>
         </header>

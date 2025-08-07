@@ -6,6 +6,13 @@
   display: flex;
   flex-direction: column;
   background: radial-gradient(circle at bottom left, #2B1055, #000000); /* Space-like gradient */
+  overflow-y: scroll; /* Allow vertical scrolling */
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on mobile */
+  scrollbar-width: none; /* For Firefox */
+}
+
+.App::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and WebKit-based browsers */
 }
 
 /* Main content area */
@@ -15,7 +22,6 @@ main {
   margin-left: 180px; /* Adjusted for sidebar */
   padding: 2rem;
   max-width: 100%;
-  overflow-y: auto; /* Allow vertical scrolling for content if necessary */
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Ensure footer is pushed to the bottom */

@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Resume from './components/Resume';
 import Projects from './components/Projects';
+import Tools from './components/Tools';
 import Contact from './components/Contact';
 import Footer from './components/Footer'; // Import the Footer
 
@@ -49,6 +50,7 @@ function App() {
                         <Route path="/" element={<Hero/>}/>
                         <Route path="/resume" element={<Resume/>}/>
                         <Route path="/projects" element={<Projects/>}/>
+                        <Route path="/tools" element={<Tools />} />
                         <Route path="/contact" element={<Contact/>}/>
                     </Routes>
                 </main>
