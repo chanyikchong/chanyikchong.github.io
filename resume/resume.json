@@ -1,0 +1,129 @@
+{
+  "name": "Yichong Chen",
+  "profileImage": "/resume/Image.jpg",
+  "resumePdf": "/resume/Yichong_s_CV.pdf",
+  "phones": ["(+86) 13794390972", "(+44) 07754875112"],
+  "emails": ["yichong.chen119@imperial.ac.uk", "chanyikchong@outlook.com"],
+  "education": [
+    {
+      "school": "Imperial College London",
+      "degree": "Ph.D in Computing",
+      "time": "April 2022 - Present"
+    },
+    {
+      "school": "Imperial College London",
+      "degree": "MSc in Computing (AI & Machine Learning)",
+      "time": "Sep 2019 - Nov 2020"
+    },
+    {
+      "school": "University of Birmingham",
+      "degree": "BSc in Mathematics",
+      "time": "Sep 2017 - June 2019"
+    },
+    {
+      "school": "South China University of Technology",
+      "degree": "BEng in Information Management",
+      "time": "Sep 2014 - June 2019"
+    }
+  ],
+  "researchExperience": [
+    {
+      "organization": "Imperial College London",
+      "role": "Ph.D. Researcher",
+      "time": "April 2022 - Present",
+      "bulletPoints": [
+        "Developed a collaborative AI system with early-exit neural networks and predictive models, enabling faster and more energy-efficient inference on edge devices without sacrificing accuracy.",
+        "Enhanced the AI system with reinforcement learning and automatic change detection to maintain high performance even when network conditions and workloads shift unexpectedly.",
+        "Built a dynamic scheduler using simulation and online traffic prediction, significantly improving task allocation and reducing service delays and failures under real-world conditions."
+      ]
+    }
+  ],
+  "workExperience": [
+    {
+      "organization": "Imperial Consultants",
+      "role": "Full Stack Developer",
+      "time": "Sep 2022 - Oct 2024",
+      "bulletPoints": [
+        "Led the design, development, and cloud deployment of SiMON, a solar anomaly detection platform used by [SEENG LTD](https://www.seeng-s.co.uk/) to monitor large-scale solar fields.",
+        "Delivered a complete web-based application integrating client-provided detection algorithms, enabling real-time monitoring and field diagnostics.",
+        "Supported SEENG LTD in securing new funding and external contracts by providing a robust, production-ready system that demonstrated clear business value."
+      ]
+    },
+    {
+      "organization": "Huawei Technologies Co., Ltd",
+      "role": "AI Engineer",
+      "time": "Nov 2020 - June 2022",
+      "bulletPoints": [
+        "Built and deployed AI systems for real-time monitoring of factory data, enabling early detection of quality issues in production lines.",
+        "Developed interactive reporting tools to automate failure analysis and identify root causes, streamlining engineering workflows.",
+        "Applied NLP models to extract insights from technical logs and built a searchable knowledge graph to support intelligent queries and decision-making."
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "authors": [
+        { "name": "Y. Chen", "highlight": true },
+        { "name": "Z. Niu" },
+        { "name": "M. Roveri" },
+        { "name": "G. Casale" }
+      ],
+      "title": "CEED: Collaborative Early Exit Neural Network Inference at the Edge",
+      "link": "https://ieeexplore.ieee.org/abstract/document/11044557",
+      "venue": "Proc.of INFOCOM",
+      "date": "May 2025"
+    },
+    {
+      "authors": [
+        { "name": "S. Huang" },
+        { "name": "K. Li" },
+        { "name": "D. You" },
+        { "name": "Y. Chen", "highlight": true },
+        { "name": "A. Lin" },
+        { "name": "S. Liu" },
+        { "name": "X. Li" },
+        { "name": "J. McCann" }
+      ],
+      "title": "Wimans: A benchmark dataset for wifi-based multi-user activity sensing",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-72946-1_5",
+      "venue": "Proc.of ECCV",
+      "date": "Oct 2024"
+    },
+    {
+      "authors": [
+        { "name": "Y. Chen", "highlight": true },
+        { "name": "M. Roveri" },
+        { "name": "S. Tuli" },
+        { "name": "G. Casale" }
+      ],
+      "title": "Coupling QoS Co-Simulation with Online Adaptive Arrival Forecasting",
+      "link": "https://ieeexplore.ieee.org/abstract/document/10327805",
+      "venue": "Proc.of IFIP/IEEE CNSM",
+      "date": "Nov 2023"
+    },
+    {
+      "authors": [
+        { "name": "Y. Chen", "highlight": true },
+        { "name": "G. Casale" }
+      ],
+      "title": "Deep Learning Models for Automated Identification of Scheduling Policies",
+      "link": "https://ieeexplore.ieee.org/abstract/document/9614298",
+      "venue": "Proc.of IEEE MASCOTS",
+      "date": "Nov 2021"
+    }
+  ],
+  "technicalStrengths": [
+    {
+      "label": "Coding",
+      "values": ["Python", "MATLAB", "JavaScript", "SQL"]
+    },
+    {
+      "label": "Software & Tools",
+      "values": ["PyTorch", "Nginx", "Docker", "Microsoft Office", "LaTeX"]
+    },
+    {
+      "label": "Language",
+      "values": ["English (Business Conversation)", "Mandarin (Native)", "Cantonese (Native)"]
+    }
+  ]
+}
