@@ -177,10 +177,13 @@
     flex-basis: 65%;
     text-align: left;
     color: #d0d0d0; /* Slightly lighter gray for values */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
 }
 
 .tech-value div {
-    margin-bottom: 0.5rem; /* Add space between stacked languages */
+    margin-bottom: 0; /* Spacing handled by gap */
 }
 
 .tech-value a {

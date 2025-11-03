@@ -1,3 +1,0 @@
-# Project 2
-
-This is the full content of Project 2...

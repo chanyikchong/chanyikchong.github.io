@@ -1,21 +1,20 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 import '../styles/SingleProject.css';
+import { FaArrowRight } from 'react-icons/fa';
 
-function SingleProject({ project, mode, onClick }) {
+function SingleProject({ project, onClick }) {
     return (
-        <div
-            className={`single-project-item ${mode}`}
+        <button
+            type="button"
+            className="single-project-card"
             onClick={onClick}
         >
-            <div className={`project-abstract ${mode}`}>
-                <h3>{project.title}</h3>
-                <p>{project.abstract}</p>
-            </div>
-            <div className={`markdown-content ${mode}`}>
-                <ReactMarkdown>{project.content}</ReactMarkdown>
-            </div>
-        </div>
+            <h3>{project.title}</h3>
+            <p>{project.abstract}</p>
+            <span className="single-project-card__cta">
+                View project <FaArrowRight aria-hidden="true" />
+            </span>
+        </button>
     );
 }
 

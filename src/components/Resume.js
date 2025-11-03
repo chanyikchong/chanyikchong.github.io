@@ -1,204 +1,213 @@
-// src/components/Resume.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import '../styles/Resume.css';
-import ProfilePic from '../assets/Image.jpg';
-import ResumePDF from '../assets/Yichong_s_CV.pdf'; // Path to your resume PDF
 
+const RESUME_DATA_URL = `${process.env.PUBLIC_URL || ''}/resume/resume.json`;
+
+const renderAuthors = (authors = []) => authors.map((author, index) => (
+    <span
+        key={`${author.name}-${index}`}
+        className={author.highlight ? 'highlight-author' : undefined}
+    >
+        {author.name}{index < authors.length - 1 ? ', ' : ''}
+    </span>
+));
+
+const resolveAssetPath = (assetPath = '') => {
+    if (!assetPath) {
+        return '';
+    }
+
+    if (/^(?:https?:)?\/\//i.test(assetPath)) {
+        return assetPath;
+    }
+
+    const publicUrl = process.env.PUBLIC_URL || '';
+
+    if (assetPath.startsWith('/')) {
+        return `${publicUrl}${assetPath}`;
+    }
+
+    return `${publicUrl}/${assetPath}`;
+};
 
 const Resume = () => {
+    const [resumeData, setResumeData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const loadResume = async () => {
+            try {
+                const response = await fetch(RESUME_DATA_URL);
+                if (!response.ok) {
+                    throw new Error('Unable to load résumé data');
+                }
+                const data = await response.json();
+                setResumeData(data);
+            } catch (err) {
+                console.error(err);
+                setError('We could not load the résumé right now.');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        loadResume();
+    }, []);
+
+    const renderBulletList = (items = []) => (
+        <ul className="experience-description">
+            {items.map((item, index) => (
+                <li key={index}>
+                    <ReactMarkdown>{item}</ReactMarkdown>
+                </li>
+            ))}
+        </ul>
+    );
+
+    if (isLoading) {
+        return (
+            <section className="resume-section">
+                <p>Loading résumé…</p>
+            </section>
+        );
+    }
+
+    if (error || !resumeData) {
+        return (
+            <section className="resume-section">
+                <p>{error || 'Résumé data is unavailable.'}</p>
+            </section>
+        );
+    }
+
+    const {
+        name,
+        phones = [],
+        emails = [],
+        profileImage,
+        resumePdf,
+        education = [],
+        researchExperience = [],
+        workExperience = [],
+        publications = [],
+        technicalStrengths = []
+    } = resumeData;
+
+    const resumeFileName = resumePdf ? resumePdf.split('/').pop() : 'resume.pdf';
+
     return (
         <section className="resume-section">
             <div className="profile-container">
-                <img src={ProfilePic} alt="Profile" className="profile-img"/>
+                {profileImage && (
+                    <img
+                        src={resolveAssetPath(profileImage)}
+                        alt="Profile"
+                        className="profile-img"
+                    />
+                )}
             </div>
             <div className="resume-content">
-                <h1>Yichong Chen</h1>
-                <p><strong>Phone:</strong> (+86) 13794390972, (+44) 07754875112</p>
-                <p><strong>Email:</strong> yichong.chen119@imperial.ac.uk, chanyikchong@outlook.com</p>
+                <h1>{name}</h1>
+                <p><strong>Phone:</strong> {phones.join(', ')}</p>
+                <p><strong>Email:</strong> {emails.join(', ')}</p>
 
                 <h2>Education Background</h2>
                 <div className="education-section">
-                    <div className="education-item">
-                        <div className="education-school">
-                            <span className="affiliation_name">Imperial College London</span>
-                            <span className="degree">Ph.D in Computing</span>
+                    {education.map((item) => (
+                        <div className="education-item" key={`${item.school}-${item.time}`}>
+                            <div className="education-school">
+                                <span className="affiliation_name">{item.school}</span>
+                                <span className="degree">{item.degree}</span>
+                            </div>
+                            <div className="education-time">{item.time}</div>
                         </div>
-                        <div className="education-time">April 2022 - Present</div>
-                    </div>
-
-                    <div className="education-item">
-                        <div className="education-school">
-                            <span className="affiliation_name">Imperial College London</span>
-                            <span className="degree">MSc in Computing (AI & Machine Learning)</span>
-                        </div>
-                        <div className="education-time">Sep 2019 - Nov 2020</div>
-                    </div>
-
-                    <div className="education-item">
-                        <div className="education-school">
-                            <span className="affiliation_name">University of Birmingham</span>
-                            <span className="degree">BSc in Mathematics</span>
-                        </div>
-                        <div className="education-time">Sep 2017 - June 2019</div>
-                    </div>
-
-                    <div className="education-item">
-                        <div className="education-school">
-                            <span className="affiliation_name">South China University of Technology</span>
-                            <span className="degree">BEng in Information Management</span>
-                        </div>
-                        <div className="education-time">Sep 2014 - June 2019</div>
-                    </div>
+                    ))}
                 </div>
 
                 <h2>Research Experience</h2>
                 <div className="experience-section">
-                    <div className="experience-item">
-                        <div className="experience-company">
-                            <span className="affiliation_name">Imperial College London</span>
-                            <span className="position">Ph.D. Researcher</span>
+                    {researchExperience.map((experience) => (
+                        <div key={`${experience.organization}-${experience.time}`}>
+                            <div className="experience-item">
+                                <div className="experience-company">
+                                    <span className="affiliation_name">{experience.organization}</span>
+                                    <span className="position">{experience.role}</span>
+                                </div>
+                                <div className="experience-time">{experience.time}</div>
+                            </div>
+                            {renderBulletList(experience.bulletPoints)}
                         </div>
-                        <div className="experience-time">April 2022 - Present</div>
-                    </div>
-                    <ul className="experience-description">
-                        <li>
-                            Developed a collaborative AI system with early-exit neural networks and predictive models,
-                            enabling faster and more energy-efficient inference on edge devices without sacrificing
-                            accuracy.
-                        </li>
-                        <li>
-                            Enhanced the AI system with reinforcement learning and automatic change detection to
-                            maintain high performance even when network conditions and workloads shift unexpectedly.
-                        </li>
-                        <li>
-                            Built a dynamic scheduler using simulation and online traffic prediction, significantly
-                            improving task allocation and reducing service delays and failures under real-world
-                            conditions.
-                        </li>
-                    </ul>
+                    ))}
                 </div>
 
                 <h2>Work Experience</h2>
                 <div className="experience-section">
-                    <div className="experience-item">
-                        <div className="experience-company">
-                            <span className="affiliation_name">Imperial Consultants</span>
-                            <span className="position">Full Stack Developer</span>
+                    {workExperience.map((experience) => (
+                        <div key={`${experience.organization}-${experience.time}`}>
+                            <div className="experience-item">
+                                <div className="experience-company">
+                                    <span className="affiliation_name">{experience.organization}</span>
+                                    <span className="position">{experience.role}</span>
+                                </div>
+                                <div className="experience-time">{experience.time}</div>
+                            </div>
+                            {renderBulletList(experience.bulletPoints)}
                         </div>
-                        <div className="experience-time">Sep 2022 - Oct 2024</div>
-                    </div>
-                    <ul className="experience-description">
-                        <li>
-                            Led the design, development, and cloud deployment of SiMON, a solar anomaly detection
-                            platform used by <a href="https://www.seeng-s.co.uk/" target="_blank"
-                                                rel="noreferrer">SEENG LTD </a> to monitor large-scale solar fields.
-                        </li>
-                        <li>
-                            Delivered a complete web-based application integrating client-provided detection algorithms,
-                            enabling real-time monitoring and field diagnostics.
-                        </li>
-                        <li>
-                            Supported SEENG LTD in securing new funding and external contracts by providing a robust,
-                            production-ready system that demonstrated clear business value.
-                        </li>
-                    </ul>
-
-                    <div className="experience-item">
-                        <div className="experience-company">
-                            <span className="affiliation_name">Huawei Technologies Co., Ltd</span>
-                            <span className="position">AI Engineer</span>
-                        </div>
-                        <div className="experience-time">Nov 2020 - June 2022</div>
-                    </div>
-                    <ul className="experience-description">
-                        <li>
-                            Built and deployed AI systems for real-time monitoring of factory data, enabling early
-                            detection of quality issues in production lines.
-                        </li>
-                        <li>
-                            Developed interactive reporting tools to automate failure analysis and identify root causes,
-                            streamlining engineering workflows.
-                        </li>
-                        <li>
-                            Applied NLP models to extract insights from technical logs and built a searchable knowledge
-                            graph to support intelligent queries and decision-making.
-                        </li>
-                    </ul>
-
-                    {/* Add more work here */}
+                    ))}
                 </div>
 
                 <h2>Publications</h2>
                 <div className="publication-section">
                     <div className="publication-item">
                         <ul>
-                            <li className="publication-content">
-                                <span className="highlight-author">Y. Chen</span>, Z. Niu, M. Roveri, G. Casale. <a
-                                href="https://ieeexplore.ieee.org/abstract/document/11044557"
-                                target="_blank"
-                                rel="noreferrer">CEED: Collaborative Early Exit Neural Network Inference at the Edge</a>,
-                                in <i>Proc.of INFOCOM</i>, May 2025.
-                            </li>
-                            <li className="publication-content">
-                                S. Huang, K. Li, D. You, <span className="highlight-author">Y. Chen</span>, A. Lin, S.
-                                Liu, X. Li, and j. McCann, <a
-                                href="https://link.springer.com/chapter/10.1007/978-3-031-72946-1_5" target="_blank"
-                                rel="noreferrer">
-                                Wimans: A benchmark dataset for wifi-based multi-user activity sensing</a>,
-                                in <i>Proc.of ECCV</i>, Oct 2024.
-                            </li>
-
-                            <li className="publication-content">
-                                <span className="highlight-author">Y. Chen</span>, M. Roveri, S, Tuli and G. Casale, <a
-                                href="https://ieeexplore.ieee.org/abstract/document/10327805" target="_blank"
-                                rel="noreferrer">
-                                Coupling QoS Co-Simulation with Online Adaptive Arrival Forecasting</a>, in <i>Proc.of
-                                IFIP/IEEE CNSM</i>, Nov 2023.
-                            </li>
-
-                            <li className="publication-content">
-                                <span className="highlight-author">Y. Chen</span> and G. Casale, <a
-                                href="https://ieeexplore.ieee.org/abstract/document/9614298"
-                                target="_blank"
-                                rel="noreferrer">Deep Learning Models for Automated Identification of Scheduling
-                                Policies</a>, in <i>Proc.of IEEE MASCOTS</i>,
-                                Nov 2021.
-                            </li>
+                            {publications.map((publication) => (
+                                <li
+                                    className="publication-content"
+                                    key={`${publication.title}-${publication.date}`}
+                                >
+                                    {renderAuthors(publication.authors)}
+                                    {' '}
+                                    <a
+                                        href={publication.link}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        {publication.title}
+                                    </a>
+                                    , in <i>{publication.venue}</i>, {publication.date}.
+                                </li>
+                            ))}
                         </ul>
                     </div>
-
-                    {/* Add more publications here as additional div blocks */}
                 </div>
 
                 <h2>Technical Strengths</h2>
                 <div className="technical-strengths">
-                    <div className="tech-row">
-                        <div className="tech-label">Coding:</div>
-                        <div className="tech-value">Python, MATLAB, JavaScript, SQL</div>
-                    </div>
-                    <div className="tech-row">
-                        <div className="tech-label">Software & Tools:</div>
-                        <div className="tech-value">PyTorch, Nginx, Docker, Microsoft Office, LaTeX</div>
-                    </div>
-                    <div className="tech-row">
-                        <div className="tech-label">Language:</div>
-                        <div className="tech-value">
-                            <div>English (Business Conversation)</div>
-                            <div>Mandarin (Native)</div>
-                            <div>Cantonese (Native)</div>
+                    {technicalStrengths.map((strength) => (
+                        <div className="tech-row" key={strength.label}>
+                            <div className="tech-label">{strength.label}:</div>
+                            <div className="tech-value">
+                                {strength.values.map((value, index) => (
+                                    <div key={`${strength.label}-${index}`}>{value}</div>
+                                ))}
+                            </div>
                         </div>
-
-                    </div>
-
+                    ))}
                 </div>
 
-                {/* Download Button */}
                 <div className="download-container">
-                    <a href={ResumePDF} download="YichongChen_Resume.pdf" className="download-button">
-                        Download Résumé
-                    </a>
+                    {resumePdf && (
+                        <a
+                            href={resolveAssetPath(resumePdf)}
+                            download={resumeFileName}
+                            className="download-button"
+                        >
+                            Download Résumé
+                        </a>
+                    )}
                 </div>
-
             </div>
         </section>
     );

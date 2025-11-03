@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Projects.css'; // You can reuse the styles if you want a similar layout
-import '../styles/SingleProject.css'
+import { FaExternalLinkAlt } from 'react-icons/fa';
+import '../styles/Projects.css';
+import '../styles/SingleProject.css';
 
 function Tools() {
     const [tools, setTools] = useState([]);
@@ -21,22 +22,32 @@ function Tools() {
         loadTools();
     }, []);
 
-    const handleToolClick = (url) => {
-        window.open(url, '_blank'); // Open the external URL in a new tab
+    const handleToolClick = (url, event) => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+        if (event?.currentTarget instanceof HTMLElement) {
+            event.currentTarget.blur();
+        }
     };
 
     return (
         <section id="tools" className="projects">
             <div className="project-grid">
                 {tools.map((tool) => (
-                    <div
+                    <button
+                        type="button"
                         key={tool.id}
-                        className="single-project-item abstract"
-                        onClick={() => handleToolClick(tool.url)}
+                        className="single-project-card tool-card"
+                        onClick={(event) => handleToolClick(tool.url, event)}
                     >
-                        <h3>{tool.name}</h3>
+                        <div className="tool-card__heading">
+                            <h3>{tool.name}</h3>
+                            {tool.badge && <span className="tool-card__badge">{tool.badge}</span>}
+                        </div>
                         <p>{tool.description}</p>
-                    </div>
+                        <span className="single-project-card__cta">
+                            Launch tool <FaExternalLinkAlt aria-hidden="true" />
+                        </span>
+                    </button>
                 ))}
             </div>
         </section>

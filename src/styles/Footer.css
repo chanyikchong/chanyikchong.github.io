@@ -10,46 +10,41 @@
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-size: 0.85rem;
     line-height: 1.5;
-    text-align: center; /* Centered for the icons in a row */
+    text-align: center;
 }
 
 .footer-icons {
-    display: flex; /* Align icons in a row */
-    justify-content: space-around; /* Distribute space between icons */
+    display: flex;
+    justify-content: space-around;
     margin: 0.5rem;
-    /*margin-left: 0.5rem;*/
-    /*margin-right: 0.5rem;*/
-    /*margin-bottom: 0.5rem; !* Add some margin below the icons *!*/
 }
 
 .footer-icons a {
     color: white;
-    font-size: 1.5rem; /* Adjust icon size */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer-icons a:hover {
-    color: #f0f0f0; /* Hover effect */
-    transform: scale(1.2); /* Slight enlarge on hover */
+    color: #f0f0f0;
+    transform: scale(1.2);
 }
-
 
 @media (max-width: 768px) {
     .footer {
-        position: static; /* Make it flow with content, not fixed */
-        width: 100%; /* Full width for mobile */
+        position: static;
+        width: 100%;
         text-align: center;
         padding: 0.5rem 0;
-        background-color: rgba(0, 0, 0, 0.5); /* Optional background color */
+        background-color: rgba(0, 0, 0, 0.5);
     }
 
     .footer-icons {
-        justify-content: center; /* Center icons in mobile */
+        justify-content: center;
     }
 
-    .footer-icons a{
+    .footer-icons a {
         margin-left: 1rem;
         margin-right: 1rem;
     }
-
 }

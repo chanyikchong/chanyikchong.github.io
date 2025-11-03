@@ -1,70 +1,99 @@
-import React, { useState, useEffect } from 'react';
-import SingleProject from './SingleProject';  // Import the SingleProject component
+import React, { useEffect, useState } from 'react';
+import SingleProject from './SingleProject';
+import ProjectModal from './ProjectModal';
 import '../styles/Projects.css';
+
+const manifestPath = `${process.env.PUBLIC_URL || ''}/projects/projects.json`;
 
 function Projects() {
     const [projects, setProjects] = useState([]);
-    const [openProjectId, setOpenProjectId] = useState(null);
-
-    // test
-    const [isClicked, setIsClicked] = useState(false);
-
-    // Toggle the state when button is clicked
-    const handleClick = () => {
-        setIsClicked(!isClicked); // Toggle the state
-    };
+    const [activeProject, setActiveProject] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Load project data
         const loadProjects = async () => {
-            const projectsData = [
-                { id: 1, title: 'Project 1', folder: 'project1' },
-                { id: 2, title: 'Project 2', folder: 'project2' },
-                { id: 3, title: 'Project 3', folder: 'project3' },
-                // Add more projects as needed
-            ];
+            try {
+                const manifestResponse = await fetch(manifestPath);
+                if (!manifestResponse.ok) {
+                    throw new Error('Unable to load project manifest');
+                }
 
-            const loadedProjects = await Promise.all(projectsData.map(async (project) => {
-                const abstractResponse = await fetch(`/projects/${project.folder}/abstract.md`);
-                const abstract = await abstractResponse.text();
+                const manifest = await manifestResponse.json();
+                const baseUrl = process.env.PUBLIC_URL || '';
 
-                const response = await fetch(`/projects/${project.folder}/README.md`);
-                const content = await response.text();
-                return { ...project, abstract, content };
-            }));
+                const loadedProjects = await Promise.all(
+                    manifest.map(async (project) => {
+                        const folderBase = `${baseUrl}/projects/${project.folder}`;
 
-            setProjects(loadedProjects);
+                        try {
+                            const [abstractResponse, readmeResponse] = await Promise.all([
+                                fetch(`${folderBase}/abstract.md`),
+                                fetch(`${folderBase}/README.md`)
+                            ]);
+
+                            if (!abstractResponse.ok || !readmeResponse.ok) {
+                                throw new Error(`Missing files for ${project.title}`);
+                            }
+
+                            const [abstract, content] = await Promise.all([
+                                abstractResponse.text(),
+                                readmeResponse.text()
+                            ]);
+
+                            return {
+                                ...project,
+                                abstract: abstract.trim(),
+                                content,
+                                basePath: `${folderBase}/`
+                            };
+                        } catch (innerError) {
+                            console.error(innerError);
+                            return {
+                                ...project,
+                                abstract: 'Project details coming soon.',
+                                content: 'Project details coming soon.',
+                                basePath: `${folderBase}/`
+                            };
+                        }
+                    })
+                );
+
+                setProjects(loadedProjects);
+            } catch (err) {
+                console.error(err);
+                setError('We could not load the project list right now.');
+            } finally {
+                setIsLoading(false);
+            }
         };
 
         loadProjects();
     }, []);
 
-    const handleProjectClick = (projectId) => {
-        setOpenProjectId(openProjectId === projectId ? null : projectId);
-    };
-
     return (
         <section id="projects" className="projects">
-            {/*<h2>Projects</h2>*/}
-            <div className={`project-grid ${isClicked ? 'no-grid' : ''}`}>
-                {projects.map((project) => {
-                    let mode = 'abstract';
-                    if (openProjectId === project.id) {
-                        mode = 'open';
-                    } else if (openProjectId !== null) {
-                        mode = 'close';
-                    }
-
-                    return (
-                        <SingleProject
-                            key={project.id}
-                            project={project}
-                            mode={mode}
-                            onClick={() => {handleProjectClick(project.id); handleClick()}}
+            {isLoading && <p>Loading projects…</p>}
+            {error && !isLoading && <p>{error}</p>}
+            {!isLoading && !error && (
+                <>
+                    <div className="project-grid">
+                        {projects.map((project) => (
+                            <SingleProject
+                                key={project.id}
+                                project={project}
+                                onClick={() => setActiveProject(project)}
+                            />
+                        ))}
+                    </div>
+                    {activeProject && (
+                        <ProjectModal
+                            project={activeProject}
+                            onClose={() => setActiveProject(null)}
                         />
-                    );
-                })}
-            </div>
+                    )}
+                </>
+            )}
         </section>
     );
 }
