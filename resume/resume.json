@@ -32,31 +32,32 @@
       "role": "Ph.D. Researcher",
       "time": "April 2022 - Present",
       "bulletPoints": [
-        "Developed a collaborative AI system with early-exit neural networks and predictive models, enabling faster and more energy-efficient inference on edge devices without sacrificing accuracy.",
-        "Enhanced the AI system with reinforcement learning and automatic change detection to maintain high performance even when network conditions and workloads shift unexpectedly.",
-        "Built a dynamic scheduler using simulation and online traffic prediction, significantly improving task allocation and reducing service delays and failures under real-world conditions."
+        "Designed and deployed a collaborative AI edge system using early-exit neural networks to reduce inference time and energy use on edge devices while maintaining target accuracy.",
+        "Developed a transformer-based exit–confidence predictor and a GNN-based system-performance estimator to jointly tune accuracy, latency, and loss for multi-device edge inference.",
+        "Developed context-aware prediction and RL-based control modules to detect environment shifts and auto-reconfigure system parameters in real time, preserving accuracy and latency.",
+        "Built an AI-driven scheduler to continuously optimize task–host placement in a fog-computing environment, reducing response time by 8% and SLA violations by 50%"
       ]
     }
   ],
   "workExperience": [
     {
-      "organization": "Imperial Consultants",
-      "role": "Full Stack Developer",
-      "time": "Sep 2022 - Oct 2024",
-      "bulletPoints": [
-        "Led the design, development, and cloud deployment of SiMON, a solar anomaly detection platform used by [SEENG LTD](https://www.seeng-s.co.uk/) to monitor large-scale solar fields.",
-        "Delivered a complete web-based application integrating client-provided detection algorithms, enabling real-time monitoring and field diagnostics.",
-        "Supported SEENG LTD in securing new funding and external contracts by providing a robust, production-ready system that demonstrated clear business value."
-      ]
-    },
-    {
       "organization": "Huawei Technologies Co., Ltd",
       "role": "AI Engineer",
       "time": "Nov 2020 - June 2022",
       "bulletPoints": [
-        "Built and deployed AI systems for real-time monitoring of factory data, enabling early detection of quality issues in production lines.",
-        "Developed interactive reporting tools to automate failure analysis and identify root causes, streamlining engineering workflows.",
-        "Applied NLP models to extract insights from technical logs and built a searchable knowledge graph to support intelligent queries and decision-making."
+        "Built real-time monitoring and ensemble anomaly-detection pipelines on manufacturing data to detect early quality issues in the manufacturing production line and reduced 30% cost.",
+        "Developed a transformer-based language model that provides recommendation solutions to production-line analysts, reducing issue resolution time by 20%.",
+        "Designed an OCR-based text-extraction framework to pull key values from oscilloscope images, reducing engineers’ manual data entry by 90%."
+      ]
+    },
+    {
+      "organization": "Imperial Consultants",
+      "role": "Full Stack Developer",
+      "time": "Sep 2022 - Oct 2024",
+      "bulletPoints": [
+      	"Led end-to-end design, development, and cloud deployment of SiMON, a web-based solar-field anomaly monitoring platform.",
+        "Built full-stack solution: React (frontend), Python (backend), and a MATLAB-based algorithm service containerized with Docker. Configured Nginx as a reverse proxy/load balancer.",
+        "Delivered a production-ready system that enabled [SEENG LTD](https://www.seeng-s.co.uk/) to demonstrate business value and win new funding and external contracts."
       ]
     }
   ],
