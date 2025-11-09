@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Building Edge Intelligence",
+    "folder": "edge-intel",
+    "slug": "building-edge-intelligence",
+    "date": "2024-10-12"
+  },
+  {
+    "id": 2,
+    "title": "Latency-Aware Scheduling",
+    "folder": "latency-aware",
+    "slug": "latency-aware-scheduling",
+    "date": "2024-09-05"
+  }
+]

@@ -1,17 +1,22 @@
 [
   {
     "id": 1,
-    "title": "Project 1",
-    "folder": "project1"
+    "title": "Adaptive Arrival Focasting Framework",
+    "folder": "Adaptive"
   },
   {
     "id": 2,
-    "title": "Project 2",
-    "folder": "project2"
+    "title": "CEED",
+    "folder": "CEED"
   },
   {
     "id": 3,
-    "title": "Project 3",
-    "folder": "project3"
+    "title": "Under review",
+    "folder": "CARSS"
+  },
+  {
+    "id": 4,
+    "title": "Under review",
+    "folder": "DCEED"
   }
 ]
