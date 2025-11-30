@@ -7,51 +7,23 @@ Therefore, we present an online adaptive framework to adapt the arrival generati
 
 Our experiments show that our online adaptive forecasting framework has lower forecasting errors than established prediction models, such as autoregressive processes, and lower on real-world traces the co-simulator prediction error by up to 27% on average response time and 39% on average service-level agreement (SLA) violation.
 
+## Problem
+<div align="center">
+  <img src="./images/system_framework.png" alt="Fig. 1: Fog computing system  framework" width="400" />
+</div>
+We consider a dynamic Fog system that contains a digital-twin co-simulator, which is used to estimate the QoS of the system, as shown in Fig.1. The Fog system receives tasks from a gateway that collects tasks and sends them to the broker. The scheduling decisions are made by the broker based on the QoS estimates from the co-simulator. The tasks are executed on the assigned hosts, and the actual QoS is computed.
+
+The distribution of the arrival process can change over time. We wish to design a framework that predicts the number of arrivals in $L$ step ahead with the last $t_0$ observation of arrivals and adapt the prediction model when concept drift occurs on the distribution of the arrivals. The prediction and adaptation mechanism form our proposed framework.
+
 ## Adaptive Arrival Forecasting Framework
-We present a hierarchical framework to predict a long-time arrival series for the co-simulator to estimate the performance metrics of the new arrival tasks
+we present a hierarchical framework to predict a long-time arrival series for the co-simulator to estimate the performance metrics of the new arrival tasks with the default scheduling policy.
+
 ### Hierarchical Change Point Detection
-We present a non-parametric hierarchical change point detection (HCPD) method to detect and estimate change point in the arrival series. To detect both location and scale shifts in the time series, we apply MCUSUM and DD+-CUSUM change detection algorithms.
-#### MCUSUM
+We present a non-parametric hierarchical change point detection (HCPD) method to detect and estimate change point in the arrival series. To detect both location and scale shifts in the time series, we apply $\text{MCUSUM}$ and $\text{DD}^+\text{-CUSUM}$ change detection algorithms.
 
+The $\text{MCUSUM}$ and $\text{DD}^+\text{-CUSUM}$ monitor the arrival simultaneously and store the new observation in a buffer with a prefix size. The buffer drops the oldest observation and adds the newest one if the buffer reaches its size limit. HCPD detects a potential change if either one of these two CUSUM algorithms raises a detection flag. 
 
-#### DD+-CUSUM
-The data depth $\textit{R}$ statistic measures the distance between an observation and the mean of a distribution. Given observed arrivals $\mathbf{x}_t$, the data depth can be formulated as
-
-$$ 
-DD_{\Phi_0}(\mathbf{x}_t) = 1 - ||E_{\Phi_0}(U(\mathbf{x}_t-\mathbf{y}))||, 
-$$
-
-where $\mathbf{y}\sim \Phi_0$ is data from distribution $\Phi_0$, and the operation $U(x) = \frac{x}{||x||}$. Thus, $DD_{\Phi_0}(\mathbf{x})$ is close to $0$ if the observation $\mathbf{x}$ is far away from the center of the distribution $\Phi_0$. On the contrary, $DD_{\Phi_0}(\mathbf{x})$ becomes large and attains the maximum value $1$ if the observation is near the center of $\Phi_0$. In a change detection problem with a given historical data set ${\mathbf{y}_1, \dots, \mathbf{y}_m}$, the sample data depth is defined as
-
-$$ 
-DD_{\hat{\Phi}_0}(\mathbf{x}_t) = 1 - \frac{1}{m}{\left\lVert\sum_{i=1,\mathbf{y}_i\neq \mathbf{x}_t}^mU(\mathbf{x}_t-\mathbf{y}_i)\right\rVert} 
-$$
-
-where $\hat{\Phi}_0$ represents the empirical distribution of the data.
-
-The data depth $\textit{R}$ to detect increase of scale is calculated from
-
-$$
-    \textit{R}_{\hat{\Phi}_0}^+(\mathbf{x}_t) = \frac{\sum_{i=1}^m I(DD_{\hat{\Phi}_0}(\mathbf{y}_i) \leq DD_{\hat{\Phi}_0}(\mathbf{x}_t))}{m}
-$$
-
-which is the count of the historical data with a large data depth compared to the new observation. If the new observation $\mathbf{x}_t$ is near the center of the historical data set $\mathbf{y}_i$, the data depth of $\mathbf{x}_t$ would be greater than most of the historical data, which leads to a large $\textit{R}$ statistic value. Hence, $1-\textit{R}_{\hat{\Phi}_0}^+(\mathbf{x}_t)$ can represent the distance between $\mathbf{x}_t$ and the empirical distribution of the historical data.
-
-To detect decrease of scale, $\textit{R}$ is comuted as:
-
-$$
-    \textit{R}_{\hat{\Phi}_0}^-(\mathbf{x}_t) = \frac{\sum_{i=1}^m I(DD_{\hat{\Phi}_0}(\mathbf{y}_i) \geq DD_{\hat{\Phi}_0}(\mathbf{x}_t))}{m} 
-$$
-
-Then, $\text{DD}^+\text{-CUSUM}$ cumulatively sums both positive and negative $\textit{R}$ statistic measures and the control chart is performed on the one with the maximum value. The complete $\text{DD}^+\text{-CUSUM}$ can be formed as follow:
-
-$$
-    S^+_t = \max(0, S^+_{t-1}+(1-\textit{R}^+_{\hat{\Phi}_0}(\mathbf{x}_t))-k) \\
-    S^-_t = \max(0, S^-_{t-1}+(1-\textit{R}^-_{\hat{\Phi}_0}(\mathbf{x}_t))-k) \\
-    S_t = \max(S^+_t, S^-_t)
-$$
-
-$\text{DD}^+\text{-CUSUM}$ detects a change when $S_t>h$.
+Once the detection algorithms trigger the alarm, a validation module uses the Lepage-type (LP) hypothesis test, which can detect both location and scale shifts, to validate the change and estimate the change point with the stored data in the buffer. We calculate the LP test value on every possible splitting and performance hypothesis test on the one with the maximum.  If the LP test confirms the change exists, we consider the splitting point with the maximum statistical test value as the estimated change point.
 
 ### Arrival Series Forecasting
 We design a transformer based encoder-decoder model with the \textit{ProbSparse} attention as the self-attention module to predict the long-term arrival series. The overall structure of our transformer model is shown below:
@@ -70,5 +42,81 @@ Instead of directly predicting the number of future arrivals, we predict the par
 <div align="center">
   <img src="./images/algo.png" alt="Adaptive Arrival Prediction Framework" width="480" />
 </div>
+The algorithm illustrate the procedure of the adaptive arrival prediction framework.
 
+## Results
+We evaluate two workload traces and report the mean absolute error (MAE) of ART and ASLAV for each forecasting model:
 
+### Table: MAE of ART and ASLAV Estimated with Forecasting Models
+
+<div align="center">
+<table style="border-collapse: collapse; margin: 20px auto;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #666; padding: 12px 16px; background-color: rgba(255, 255, 255, 0.05); font-weight: bold;">Model</th>
+      <th style="border: 1px solid #666; padding: 12px 16px; background-color: rgba(255, 255, 255, 0.05); font-weight: bold;">Metric</th>
+      <th style="border: 1px solid #666; padding: 12px 16px; background-color: rgba(255, 255, 255, 0.05); font-weight: bold;">Synthetic trace</th>
+      <th style="border: 1px solid #666; padding: 12px 16px; background-color: rgba(255, 255, 255, 0.05); font-weight: bold;">Alibaba trace</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2" style="border: 1px solid #666; padding: 12px 16px; text-align: center; vertical-align: middle;"><strong>Mean</strong></td>
+      <td style="border: 1px solid #666; padding: 12px 16px;">ART</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">24.97</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">40.33</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #666; padding: 12px 16px;">ASLAV</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">4.58</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">18.59</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="border: 1px solid #666; padding: 12px 16px; text-align: center; vertical-align: middle;"><strong>MA</strong></td>
+      <td style="border: 1px solid #666; padding: 12px 16px;">ART</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">24.17</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">52.84</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #666; padding: 12px 16px;">ASLAV</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">7.45</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">23.57</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="border: 1px solid #666; padding: 12px 16px; text-align: center; vertical-align: middle;"><strong>ARIMA</strong></td>
+      <td style="border: 1px solid #666; padding: 12px 16px;">ART</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">26.16</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">47.87</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #666; padding: 12px 16px;">ASLAV</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">4.27</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">22.96</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="border: 1px solid #666; padding: 12px 16px; text-align: center; vertical-align: middle;"><strong>Our Model</strong></td>
+      <td style="border: 1px solid #666; padding: 12px 16px;">ART</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;"><strong>15.28</strong></td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;"><strong>31.74</strong></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #666; padding: 12px 16px;">ASLAV</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;"><strong>3.09</strong></td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;"><strong>11.21</strong></td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="border: 1px solid #666; padding: 12px 16px; text-align: center; vertical-align: middle;"><strong>Model w/o adapt.</strong></td>
+      <td style="border: 1px solid #666; padding: 12px 16px;">ART</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">24.72</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">34.87</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #666; padding: 12px 16px;">ASLAV</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">5.38</td>
+      <td style="border: 1px solid #666; padding: 12px 16px; text-align: center;">12.68</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+The table shows that our adaptive model achieves the best performance across both datasets, with significant improvements over baseline methods (Mean, MA, ARIMA) and the non-adaptive version of our model.

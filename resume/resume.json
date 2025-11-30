@@ -2,8 +2,8 @@
   "name": "Yichong Chen",
   "profileImage": "/resume/Image.jpg",
   "resumePdf": "/resume/Yichong_s_CV.pdf",
-  "phones": ["(+86) 13794390972", "(+44) 07754875112"],
-  "emails": ["yichong.chen119@imperial.ac.uk", "chanyikchong@outlook.com"],
+  "phones": ["(+44) 07754875112", "(+86) 13794390972"],
+  "emails": ["chanyikchong@outlook.com"],
   "education": [
     {
       "school": "Imperial College London",
@@ -32,10 +32,13 @@
       "role": "Ph.D. Researcher",
       "time": "April 2022 - Present",
       "bulletPoints": [
-        "Designed and deployed a collaborative AI edge system using early-exit neural networks to reduce inference time and energy use on edge devices while maintaining target accuracy.",
-        "Developed a transformer-based exit–confidence predictor and a GNN-based system-performance estimator to jointly tune accuracy, latency, and loss for multi-device edge inference.",
-        "Developed context-aware prediction and RL-based control modules to detect environment shifts and auto-reconfigure system parameters in real time, preserving accuracy and latency.",
-        "Built an AI-driven scheduler to continuously optimize task–host placement in a fog-computing environment, reducing response time by 8% and SLA violations by 50%"
+        "Research focuses on designing AI&ML methods to optimize quality of service (QoS) in large-scale distributed systems, enabling deployment of powerful AI models on edge devices.",
+        "Identified and formalized critical challenges in deploying AI models to edge devices, motivating the need for more effective deployment and optimization techniques.",
+        "Independently developed a distributed AI edge system with adaptive neural networks to reduce inference time and energy use on resource-constrained devices while maintaining model performance.",
+        "Designed a novel optimization algorithm integrating a transformer-based neural performance predictor and a GNN-based system-performance estimator to optimize accuracy and latency for multi-device inference jointly.",
+        "Developed a context-aware Reinforcement Learning model to auto-reconfigure distributed system settings in real time. Bridging experimental assumptions with realistic dynamic edge environments and addressing practical system management challenges.",
+        "Built an AI-driven scheduler to continuously optimize task–host placement in a large-scale fog-computing environment, reducing response time by 8% and service level agreement violations by 50%.",
+        "Defined research milestones and a publication roadmap in collaboration with supervisors and international collaborators, leading to first-authored publications at venues such as INFOCOM, CNSM, and MASCOTS."
       ]
     }
   ],
@@ -45,9 +48,12 @@
       "role": "AI Engineer",
       "time": "Nov 2020 - June 2022",
       "bulletPoints": [
-        "Built real-time monitoring and ensemble anomaly-detection pipelines on manufacturing data to detect early quality issues in the manufacturing production line and reduced 30% cost.",
-        "Developed a transformer-based language model that provides recommendation solutions to production-line analysts, reducing issue resolution time by 20%.",
-        "Designed an OCR-based text-extraction framework to pull key values from oscilloscope images, reducing engineers’ manual data entry by 90%."
+        "Designed and implemented scalable data pipelines using Apache Spark and Hadoop to collect, clean, and process massive datasets from industrial production lines.",
+        "Built a real-time manufacturing data monitoring system and ensemble anomaly-detection pipelines to identify early quality issues on production lines, reducing maintenance costs by 30%.",
+        "Led and collaborated with cross-functional engineers to define standardized industrial production issue-analysis procedures and build a labeled problem-analysis dataset.",
+        "Designed and trained a transformer-based language model to recommend solutions to production-line analysts, reducing issue resolution time by 20%.",
+        "Identified efficiency bottlenecks in business workflows and designed an OCR-based text-extraction framework to pull key values from oscilloscope images, reducing engineers’ manual data entry by 90%.",
+        "Developed clean, well-structured, and maintainable codebases, enabling sustainable evolution and easy extension of related services."
       ]
     },
     {
@@ -57,7 +63,8 @@
       "bulletPoints": [
       	"Led end-to-end design, development, and cloud deployment of SiMON, a web-based solar-field anomaly monitoring platform.",
         "Built full-stack solution: React (frontend), Python (backend), and a MATLAB-based algorithm service containerized with Docker. Configured Nginx as a reverse proxy/load balancer.",
-        "Delivered a production-ready system that enabled [SEENG LTD](https://www.seeng-s.co.uk/) to demonstrate business value and win new funding and external contracts."
+        "DWorked directly with client stakeholders at [SEENG LTD](https://www.seeng-s.co.uk/) to collect and prioritize requirements, define the product roadmap, and iteratively refine features based on feedback.",
+        "Delivered a production-ready system that enabled SEENG LTD to demonstrate business value and win new funding and external contracts."
       ]
     }
   ],
