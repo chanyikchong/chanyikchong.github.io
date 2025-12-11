@@ -1,16 +1,26 @@
 [
   {
     "id": 1,
-    "title": "Building Edge Intelligence",
-    "folder": "edge-intel",
-    "slug": "building-edge-intelligence",
-    "date": "2024-10-12"
+    "title": "Basic NLP",
+    "folder": "Large Language Model/Tokenizer",
+    "slug": "tokenizer",
+    "date": "2025-12-08",
+    "topic": "Large Language Model"
   },
   {
     "id": 2,
+    "title": "Building Edge Intelligence",
+    "folder": "Edge Computing/edge-intel",
+    "slug": "building-edge-intelligence",
+    "date": "2024-10-12",
+    "topic": "Edge Computing"
+  },
+  {
+    "id": 3,
     "title": "Latency-Aware Scheduling",
-    "folder": "latency-aware",
+    "folder": "Edge Computing/latency-aware",
     "slug": "latency-aware-scheduling",
-    "date": "2024-09-05"
+    "date": "2024-09-05",
+    "topic": "Edge Computing"
   }
 ]

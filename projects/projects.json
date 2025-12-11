@@ -1,22 +1,22 @@
 [
   {
     "id": 1,
-    "title": "Adaptive Arrival Focasting Framework",
-    "folder": "Adaptive"
+    "title": "CEED: Collaborative Early Exit Neural Network Inference at the Edge",
+    "folder": "CEED"
   },
   {
     "id": 2,
-    "title": "CEED",
-    "folder": "CEED"
+    "title": "Coupling QoS Co-Simulation with Online Adaptive Forecasting",
+    "folder": "Adaptive"
   },
   {
     "id": 3,
     "title": "Under review",
-    "folder": "CARSS"
+    "folder": "DCEED"
   },
   {
     "id": 4,
-    "title": "Under review",
-    "folder": "DCEED"
+    "title": "Under Review",
+    "folder": "CARSS"
   }
 ]
