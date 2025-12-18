@@ -1,5 +1,8 @@
-export function createStars(numStars = 100) {
-    const starContainer = document.querySelector('.star-field');
+export function createStars(numStars = 100, container) {
+    const starContainer = container || document.querySelector('.star-field');
+    if (!starContainer) {
+        return [];
+    }
     const stars = [];
 
     // Create stars and append them to the DOM

@@ -1,17 +1,51 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import '../styles/Footer.css';
 
 const Footer = () => {
-    const counterRef = useRef(null);
+    const scriptsRef = useRef([]);
+    const observerRef = useRef(null);
+    const counterSpanRef = useRef(null);
+    const isProduction = process.env.NODE_ENV === 'production';
+    const [displayCount, setDisplayCount] = useState(isProduction ? '...' : '--');
+    const latestDisplayRef = useRef(displayCount);
 
     useEffect(() => {
-        if (process.env.NODE_ENV !== 'production') {
+        latestDisplayRef.current = displayCount;
+    }, [displayCount]);
+
+    useEffect(() => {
+        const counterSpan = counterSpanRef.current;
+        if (counterSpan && counterSpan.textContent !== displayCount) {
+            counterSpan.textContent = displayCount;
+        }
+    }, [displayCount]);
+
+    useEffect(() => {
+        if (!isProduction) {
             return;
         }
 
-        const container = counterRef.current;
+        const counterSpan = counterSpanRef.current;
+        if (!counterSpan) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            const value = counterSpan.textContent?.trim();
+            if (value && value !== latestDisplayRef.current && value.toLowerCase() !== 'loading...') {
+                setDisplayCount(value);
+            }
+        });
+
+        observer.observe(counterSpan, {
+            characterData: true,
+            subtree: true,
+            childList: true
+        });
+
+        observerRef.current = observer;
 
         const inlineScript = document.createElement('script');
         inlineScript.type = 'text/javascript';
@@ -29,17 +63,24 @@ const Footer = () => {
         counterScript.src = 'https://statcounter.com/counter/counter.js';
         counterScript.async = true;
 
-        if (container) {
-            container.appendChild(inlineScript);
-            container.appendChild(counterScript);
-        }
+        document.body.appendChild(inlineScript);
+        document.body.appendChild(counterScript);
+        scriptsRef.current = [inlineScript, counterScript];
 
         return () => {
-            if (container) {
-                container.innerHTML = '';
+            if (observerRef.current) {
+                observerRef.current.disconnect();
+                observerRef.current = null;
             }
+
+            scriptsRef.current.forEach((script) => {
+                if (script && script.parentNode) {
+                    script.parentNode.removeChild(script);
+                }
+            });
+            scriptsRef.current = [];
         };
-    }, []);
+    }, [isProduction]);
 
     return (
         <footer className="footer">
@@ -55,16 +96,29 @@ const Footer = () => {
                 </a>
             </div>
 
-            <div ref={counterRef}>
+            <div className="footer-stats">
+                <div className="footer-stats__label">Total Visitors</div>
+                <div className="footer-stats__circle" aria-live="polite">
+                    <span
+                        ref={counterSpanRef}
+                        className="footer-stats__count statcounter"
+                        id="sc_counter_13157343"
+                    >
+                        {displayCount}
+                    </span>
+                </div>
                 <a
-                    title="Click to View Stats"
+                    className="footer-stats__link"
+                    title="View full analytics"
                     href="https://statcounter.com/p13157343/?guest=1"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <span>Total Visitors: </span>
-                    <span className="statcounter" id="sc_counter_13157343">Loading...</span>
+                    View full analytics
                 </a>
+                {!isProduction && (
+                    <span className="footer-stats__note">Stats update on the published site.</span>
+                )}
             </div>
         </footer>
     );

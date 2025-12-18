@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "Denosing Diffusion Probabilistic Model",
+    "folder": "Diffusion Model/Denosing Diffusion Probabilistic Model",
+    "slug": "DDPM",
+    "date": "2025-12-18",
+    "topic": "Diffusion Model"
+  },
+  {
+    "id": 2,
+    "title": "Basic NLP",
+    "folder": "Large Language Model/Tokenizer",
+    "slug": "tokenizer",
+    "date": "2025-12-08",
+    "topic": "Large Language Model"
+  },
+  {
+    "id": 3,
+    "title": "Building Edge Intelligence",
+    "folder": "Edge Computing/edge-intel",
+    "slug": "building-edge-intelligence",
+    "date": "2024-10-12",
+    "topic": "Edge Computing"
+  },
+  {
+    "id": 4,
+    "title": "Latency-Aware Scheduling",
+    "folder": "Edge Computing/latency-aware",
+    "slug": "latency-aware-scheduling",
+    "date": "2024-09-05",
+    "topic": "Edge Computing"
+  }
+]

@@ -7,13 +7,13 @@
     height: 100vh; /* Full height for sidebar */
     display: flex;
     flex-direction: column; /* Arrange items in a column */
-    justify-content: center; /* Center items vertically */
+    justify-content: flex-start; /* Align items to the top */
     align-items: center; /* Center items horizontally */
     /*background-image: url('../assets/header_bg.jpg'); !* Background image for sidebar *!*/
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding-bottom: 100px;
+    padding-top: 0; /* No top padding - align to top of page */
 }
 
 /* Header content inside sidebar (icon, name, menu) */
@@ -23,10 +23,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Align content to the middle */
+    justify-content: flex-start; /* Align content to the top */
     width: 100%; /* Make sure content spans the full width */
     height: 100%; /* Ensure content fills the height of the sidebar */
-    background-color: rgb(0, 0, 0, 0.5); /* Add a semi-transparent background */
+    background-color: var(--header-overlay); /* Add a semi-transparent background */
+    transition: background-color 0.3s ease;
 }
 
 /* Icon styles */
@@ -57,15 +58,20 @@
 }
 
 .menu-item a {
-    color: #fff;
+    color: var(--menu-text-color);
     text-decoration: none;
     font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
 /* Hover effect for menu items */
 .menu-item:hover {
     transform: scale(1.1); /* Slight enlarge on hover */
-    color: #f0f0f0; /* Change text color on hover */
+    color: var(--menu-hover-color); /* Change text color on hover */
+}
+
+.menu-item:hover a {
+    color: var(--menu-hover-color);
 }
 
 /* Mobile header */
@@ -95,7 +101,7 @@
     justify-content: center; /* Align content to the middle */
     width: 100%; /* Make sure content spans the full width */
     height: 100%; /* Ensure content fills the height of the sidebar */
-    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+    background-color: var(--header-overlay); /* Add a semi-transparent background */
     transition: background-color 0.5s ease-in-out; /* Smooth background-color transition */
 }
 
@@ -105,7 +111,7 @@
 }
 
 .mobile-header.open .header-content {
-    background-color: rgba(0, 0, 0, 1); /* Darken the background when the menu is open */
+    background-color: var(--header-overlay-solid); /* Darken the background when the menu is open */
     transition: background-color 0.5s ease-in-out; /* Smooth background-color transition */
 }
 
@@ -123,7 +129,7 @@
 .menu-icon-bar {
     width: 30px;
     height: 3px;
-    background-color: #fff;
+    background-color: var(--menu-icon-color);
     margin: 4px;
     transition: all 0.3s ease;
 }
@@ -179,7 +185,7 @@
 }
 
 .mobile-header.open .header-nav .menu-item a {
-    color: #fff;
+    color: var(--menu-text-color);
     font-size: 1.5rem;
     text-decoration: none;
     transition: transform 0.3s ease, color 0.3s ease;
@@ -187,5 +193,39 @@
 
 .mobile-header.open .header-nav .menu-item:hover {
     transform: scale(1.1);
-    color: #f0f0f0;
+    color: var(--menu-hover-color);
+}
+
+.theme-toggle {
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--card-border);
+    background: transparent;
+    color: var(--menu-text-color);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    outline: none;
+}
+
+.theme-toggle__icon {
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        margin-top: 2rem;
+    }
 }

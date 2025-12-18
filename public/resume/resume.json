@@ -1,0 +1,137 @@
+{
+  "name": "Yichong Chen",
+  "profileImage": "/resume/Image.jpg",
+  "resumePdf": "/resume/Yichong_s_CV.pdf",
+  "phones": ["(+44) 07754875112", "(+86) 13794390972"],
+  "emails": ["chanyikchong@outlook.com"],
+  "education": [
+    {
+      "school": "Imperial College London",
+      "degree": "Ph.D in Computing",
+      "time": "April 2022 - Present"
+    },
+    {
+      "school": "Imperial College London",
+      "degree": "MSc in Computing (AI & Machine Learning)",
+      "time": "Sep 2019 - Nov 2020"
+    },
+    {
+      "school": "University of Birmingham",
+      "degree": "BSc in Mathematics",
+      "time": "Sep 2017 - June 2019"
+    },
+    {
+      "school": "South China University of Technology",
+      "degree": "BEng in Information Management",
+      "time": "Sep 2014 - June 2019"
+    }
+  ],
+  "researchExperience": [
+    {
+      "organization": "Imperial College London",
+      "role": "Ph.D. Researcher",
+      "time": "April 2022 - Present",
+      "bulletPoints": [
+        "Research focuses on designing AI&ML methods to optimize quality of service (QoS) in large-scale distributed systems, enabling deployment of powerful AI models on edge devices.",
+        "Identified and formalized critical challenges in deploying AI models to edge devices, motivating the need for more effective deployment and optimization techniques.",
+        "Independently developed a distributed AI edge system with adaptive neural networks to reduce inference time and energy use on resource-constrained devices while maintaining model performance.",
+        "Designed a novel optimization algorithm integrating a transformer-based neural performance predictor and a GNN-based system-performance estimator to optimize accuracy and latency for multi-device inference jointly.",
+        "Developed a context-aware Reinforcement Learning model to auto-reconfigure distributed system settings in real time. Bridging experimental assumptions with realistic dynamic edge environments and addressing practical system management challenges.",
+        "Built an AI-driven scheduler to continuously optimize task–host placement in a large-scale fog-computing environment, reducing response time by 8% and service level agreement violations by 50%.",
+        "Defined research milestones and a publication roadmap in collaboration with supervisors and international collaborators, leading to first-authored publications at venues such as INFOCOM, CNSM, and MASCOTS."
+      ]
+    }
+  ],
+  "workExperience": [
+    {
+      "organization": "Huawei Technologies Co., Ltd",
+      "role": "AI Engineer",
+      "time": "Nov 2020 - June 2022",
+      "bulletPoints": [
+        "Designed and implemented scalable data pipelines using Apache Spark and Hadoop to collect, clean, and process massive datasets from industrial production lines.",
+        "Built a real-time manufacturing data monitoring system and ensemble anomaly-detection pipelines to identify early quality issues on production lines, reducing maintenance costs by 30%.",
+        "Led and collaborated with cross-functional engineers to define standardized industrial production issue-analysis procedures and build a labeled problem-analysis dataset.",
+        "Designed and trained a transformer-based language model to recommend solutions to production-line analysts, reducing issue resolution time by 20%.",
+        "Identified efficiency bottlenecks in business workflows and designed an OCR-based text-extraction framework to pull key values from oscilloscope images, reducing engineers’ manual data entry by 90%.",
+        "Developed clean, well-structured, and maintainable codebases, enabling sustainable evolution and easy extension of related services."
+      ]
+    },
+    {
+      "organization": "Imperial Consultants",
+      "role": "Full Stack Developer",
+      "time": "Sep 2022 - Oct 2024",
+      "bulletPoints": [
+      	"Led end-to-end design, development, and cloud deployment of SiMON, a web-based solar-field anomaly monitoring platform.",
+        "Built full-stack solution: React (frontend), Python (backend), and a MATLAB-based algorithm service containerized with Docker. Configured Nginx as a reverse proxy/load balancer.",
+        "DWorked directly with client stakeholders at [SEENG LTD](https://www.seeng-s.co.uk/) to collect and prioritize requirements, define the product roadmap, and iteratively refine features based on feedback.",
+        "Delivered a production-ready system that enabled SEENG LTD to demonstrate business value and win new funding and external contracts."
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "authors": [
+        { "name": "Y. Chen", "highlight": true },
+        { "name": "Z. Niu" },
+        { "name": "M. Roveri" },
+        { "name": "G. Casale" }
+      ],
+      "title": "CEED: Collaborative Early Exit Neural Network Inference at the Edge",
+      "link": "https://ieeexplore.ieee.org/abstract/document/11044557",
+      "venue": "Proc.of INFOCOM",
+      "date": "May 2025"
+    },
+    {
+      "authors": [
+        { "name": "S. Huang" },
+        { "name": "K. Li" },
+        { "name": "D. You" },
+        { "name": "Y. Chen", "highlight": true },
+        { "name": "A. Lin" },
+        { "name": "S. Liu" },
+        { "name": "X. Li" },
+        { "name": "J. McCann" }
+      ],
+      "title": "Wimans: A benchmark dataset for wifi-based multi-user activity sensing",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-72946-1_5",
+      "venue": "Proc.of ECCV",
+      "date": "Oct 2024"
+    },
+    {
+      "authors": [
+        { "name": "Y. Chen", "highlight": true },
+        { "name": "M. Roveri" },
+        { "name": "S. Tuli" },
+        { "name": "G. Casale" }
+      ],
+      "title": "Coupling QoS Co-Simulation with Online Adaptive Arrival Forecasting",
+      "link": "https://ieeexplore.ieee.org/abstract/document/10327805",
+      "venue": "Proc.of IFIP/IEEE CNSM",
+      "date": "Nov 2023"
+    },
+    {
+      "authors": [
+        { "name": "Y. Chen", "highlight": true },
+        { "name": "G. Casale" }
+      ],
+      "title": "Deep Learning Models for Automated Identification of Scheduling Policies",
+      "link": "https://ieeexplore.ieee.org/abstract/document/9614298",
+      "venue": "Proc.of IEEE MASCOTS",
+      "date": "Nov 2021"
+    }
+  ],
+  "technicalStrengths": [
+    {
+      "label": "Coding",
+      "values": ["Python", "MATLAB", "JavaScript", "SQL"]
+    },
+    {
+      "label": "Software & Tools",
+      "values": ["PyTorch", "Nginx", "Docker", "Microsoft Office", "LaTeX"]
+    },
+    {
+      "label": "Language",
+      "values": ["English (Business Conversation)", "Mandarin (Native)", "Cantonese (Native)"]
+    }
+  ]
+}

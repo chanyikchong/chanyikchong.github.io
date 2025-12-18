@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "CEED: Collaborative Early Exit Neural Network Inference at the Edge",
+    "folder": "CEED"
+  },
+  {
+    "id": 2,
+    "title": "Coupling QoS Co-Simulation with Online Adaptive Forecasting",
+    "folder": "Adaptive"
+  },
+  {
+    "id": 3,
+    "title": "Under review",
+    "folder": "DCEED"
+  },
+  {
+    "id": 4,
+    "title": "Under Review",
+    "folder": "CARSS"
+  }
+]

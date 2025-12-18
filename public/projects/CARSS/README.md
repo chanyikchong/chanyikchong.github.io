@@ -1,0 +1,3 @@
+# Under Review
+
+This work leverages arrival series forecasts from the proposed adaptive framework within a fog system co-simulator, and introduce a AI-based scheduling algorithm to optimizes both short-term and long-term QoS metrics to determine effective scheduling decisions.

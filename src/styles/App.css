@@ -5,10 +5,12 @@
   min-height: 100vh; /* Ensure the app takes at least 100% of the viewport height */
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at bottom left, #2B1055, #000000); /* Space-like gradient */
+  background: var(--app-bg);
+  color: var(--text-color);
   overflow-y: scroll; /* Allow vertical scrolling */
   -webkit-overflow-scrolling: touch; /* For smooth scrolling on mobile */
   scrollbar-width: none; /* For Firefox */
+  transition: color 0.3s ease, background 0.3s ease;
 }
 
 .App::-webkit-scrollbar {
@@ -28,21 +30,25 @@ main {
   height: calc(100vh - 70px); /* Adjust to the viewport height minus header size */
   background: transparent;
   z-index: 1;
+  color: inherit;
 }
 
 /* Section content */
 section {
   padding: 4rem 2rem;
+  color: inherit;
 }
 
 h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
+  color: inherit;
 }
 
 h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  color: inherit;
 }
 
 /* Mobile responsiveness */

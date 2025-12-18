@@ -1,0 +1,1 @@
+This work consider dynamic environments where system conditions change over time, such as shifts in job arrival rates, variations in image quality due to noise or blur, denoted as context drift, and fluctuations in network status. We present adaptive methods to enable auto reconfiguration of collaborative early-exit inference system.
