@@ -137,6 +137,8 @@
     border-color: var(--accent-color);
     box-shadow: var(--card-shadow-hover);
     outline: none;
+    z-index: 10;
+    position: relative;
 }
 
 .post-card__meta time {
@@ -296,7 +298,7 @@
 
 .posts__topic-posts {
     overflow: hidden;
-    padding: 0 1.25rem;
+    padding: 10px 1.25rem 0;
 }
 
 .posts__topic-content.expanded .posts__topic-posts {

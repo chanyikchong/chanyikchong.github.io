@@ -9,6 +9,22 @@
   },
   {
     "id": 2,
+    "title": "Classic NLP",
+    "folder": "Large Language Model/Classic NLP",
+    "slug": "classic-nlp",
+    "date": "2025-12-12",
+    "topic": "Large Language Model"
+  },
+  {
+    "id": 3,
+    "title": "BPE Tokenization",
+    "folder": "Large Language Model/Byte Pair Encoding",
+    "slug": "bpe-tokenization",
+    "date": "2025-12-10",
+    "topic": "Large Language Model"
+  },
+  {
+    "id": 4,
     "title": "Basic NLP",
     "folder": "Large Language Model/Tokenizer",
     "slug": "tokenizer",
@@ -16,7 +32,7 @@
     "topic": "Large Language Model"
   },
   {
-    "id": 3,
+    "id": 5,
     "title": "Building Edge Intelligence",
     "folder": "Edge Computing/edge-intel",
     "slug": "building-edge-intelligence",
@@ -24,7 +40,7 @@
     "topic": "Edge Computing"
   },
   {
-    "id": 4,
+    "id": 6,
     "title": "Latency-Aware Scheduling",
     "folder": "Edge Computing/latency-aware",
     "slug": "latency-aware-scheduling",
