@@ -7,6 +7,9 @@
     max-width: 720px;
     margin: 0 auto;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .posts__header h2 {
@@ -16,6 +19,89 @@
 .posts__header p {
     margin-top: 0;
     color: var(--muted-text-color);
+}
+
+/* Search Box */
+.posts__search {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 1.5rem;
+}
+
+.posts__search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted-text-color);
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.posts__search-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 2.5rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    backdrop-filter: blur(16px);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+}
+
+.posts__search-input::placeholder {
+    color: var(--muted-text-color);
+}
+
+.posts__search-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(205, 95, 248, 0.15);
+}
+
+.posts__search-clear {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    appearance: none;
+    border: none;
+    background: none;
+    color: var(--muted-text-color);
+    font-size: 0.85rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.posts__search-clear:hover {
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.posts__search-results {
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+    color: var(--muted-text-color);
+}
+
+.posts__no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--muted-text-color);
+}
+
+.posts__no-results p {
+    margin: 0;
+    font-size: 1.1rem;
 }
 
 .posts-grid {

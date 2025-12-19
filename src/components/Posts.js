@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeRaw from 'rehype-raw';
 import rehypeKatex from 'rehype-katex';
-import {FaArrowRight, FaChevronRight} from 'react-icons/fa';
+import {FaArrowRight, FaChevronRight, FaSearch, FaTimes} from 'react-icons/fa';
 import '../styles/Posts.css';
 import {createMarkdownComponents} from '../utils/markdown';
 import LikeButton from './LikeButton';
@@ -16,6 +16,7 @@ function Posts() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [expandedTopics, setExpandedTopics] = useState({});
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -56,13 +57,24 @@ function Posts() {
         navigate(`/posts/${slug}`);
     };
 
-    // Get latest 3 posts
-    const latestPosts = posts.slice(0, 3);
+    // Filter posts based on search term
+    const filteredPosts = useMemo(() => {
+        if (!searchTerm.trim()) return posts;
+        const term = searchTerm.toLowerCase();
+        return posts.filter(post =>
+            post.title.toLowerCase().includes(term) ||
+            post.summary.toLowerCase().includes(term) ||
+            (post.topic || '').toLowerCase().includes(term)
+        );
+    }, [posts, searchTerm]);
 
-    // Group posts by topic
+    // Get latest 3 posts from filtered results
+    const latestPosts = filteredPosts.slice(0, 3);
+
+    // Group filtered posts by topic
     const postsByTopic = useMemo(() => {
         const grouped = {};
-        posts.forEach(post => {
+        filteredPosts.forEach(post => {
             const topic = post.topic || 'Uncategorized';
             if (!grouped[topic]) {
                 grouped[topic] = [];
@@ -70,7 +82,7 @@ function Posts() {
             grouped[topic].push(post);
         });
         return grouped;
-    }, [posts]);
+    }, [filteredPosts]);
 
     const toggleTopic = (topic) => {
         setExpandedTopics(prev => ({
@@ -118,50 +130,88 @@ function Posts() {
             <header className="posts__header">
                 <h2>Thinking Log</h2>
                 <p>Notes, experiments, and field learnings captured along the way.</p>
+                <div className="posts__search">
+                    <FaSearch className="posts__search-icon" aria-hidden="true" />
+                    <input
+                        type="text"
+                        className="posts__search-input"
+                        placeholder="Search posts..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        aria-label="Search posts"
+                    />
+                    {searchTerm && (
+                        <button
+                            type="button"
+                            className="posts__search-clear"
+                            onClick={() => setSearchTerm('')}
+                            aria-label="Clear search"
+                        >
+                            <FaTimes aria-hidden="true" />
+                        </button>
+                    )}
+                </div>
+                {searchTerm && (
+                    <p className="posts__search-results">
+                        {filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'} found
+                    </p>
+                )}
             </header>
             {isLoading && <p>Loading posts…</p>}
             {error && !isLoading && <p>{error}</p>}
             {!isLoading && !error && (
                 <>
-                    {/* Latest Posts Section */}
-                    <div className="posts__latest">
-                        <h3 className="posts__section-title">Latest Posts</h3>
-                        <div className="posts-grid">
-                            {latestPosts.map(renderPostCard)}
+                    {filteredPosts.length === 0 ? (
+                        <div className="posts__no-results">
+                            <p>No posts found matching "{searchTerm}"</p>
                         </div>
-                    </div>
+                    ) : (
+                        <>
+                            {/* Latest Posts Section */}
+                            <div className="posts__latest">
+                                <h3 className="posts__section-title">
+                                    {searchTerm ? 'Matching Posts' : 'Latest Posts'}
+                                </h3>
+                                <div className="posts-grid">
+                                    {latestPosts.map(renderPostCard)}
+                                </div>
+                            </div>
 
-                    {/* Topics Table of Contents */}
-                    <div className="posts__toc">
-                        <h3 className="posts__section-title">Browse by Topic</h3>
-                        <div className="posts__topics">
-                            {Object.entries(postsByTopic).map(([topic, topicPosts]) => (
-                                <div key={topic} className="posts__topic">
-                                    <button
-                                        type="button"
-                                        className="posts__topic-header"
-                                        onClick={() => toggleTopic(topic)}
-                                        aria-expanded={expandedTopics[topic] || false}
-                                    >
-                                        <span className="posts__topic-icon">
-                                            <FaChevronRight aria-hidden="true" />
-                                        </span>
-                                        <span className="posts__topic-name">{topic}</span>
-                                        <span className="posts__topic-count">
-                                            {topicPosts.length} {topicPosts.length === 1 ? 'post' : 'posts'}
-                                        </span>
-                                    </button>
-                                    <div className={`posts__topic-content ${expandedTopics[topic] ? 'expanded' : ''}`}>
-                                        <div className="posts__topic-posts">
-                                            <div className="posts-grid">
-                                                {topicPosts.map(renderPostCard)}
+                            {/* Topics Table of Contents - only show when not searching */}
+                            {!searchTerm && (
+                                <div className="posts__toc">
+                                    <h3 className="posts__section-title">Browse by Topic</h3>
+                                    <div className="posts__topics">
+                                        {Object.entries(postsByTopic).map(([topic, topicPosts]) => (
+                                            <div key={topic} className="posts__topic">
+                                                <button
+                                                    type="button"
+                                                    className="posts__topic-header"
+                                                    onClick={() => toggleTopic(topic)}
+                                                    aria-expanded={expandedTopics[topic] || false}
+                                                >
+                                                    <span className="posts__topic-icon">
+                                                        <FaChevronRight aria-hidden="true" />
+                                                    </span>
+                                                    <span className="posts__topic-name">{topic}</span>
+                                                    <span className="posts__topic-count">
+                                                        {topicPosts.length} {topicPosts.length === 1 ? 'post' : 'posts'}
+                                                    </span>
+                                                </button>
+                                                <div className={`posts__topic-content ${expandedTopics[topic] ? 'expanded' : ''}`}>
+                                                    <div className="posts__topic-posts">
+                                                        <div className="posts-grid">
+                                                            {topicPosts.map(renderPostCard)}
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        ))}
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-                    </div>
+                            )}
+                        </>
+                    )}
                 </>
             )}
         </section>
