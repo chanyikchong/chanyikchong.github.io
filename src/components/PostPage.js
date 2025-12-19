@@ -28,6 +28,7 @@ function PostPage() {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Calculate initial progress
         return () => window.removeEventListener('scroll', handleScroll);
     }, [handleScroll]);
 
@@ -87,6 +88,7 @@ function PostPage() {
 
     return (
         <section className="post-page">
+            <div className="post-page__progress-track" />
             <div className="post-page__progress-bar" style={{ width: `${scrollProgress}%` }} />
             <div className="post-page__panel">
                 <div className="post-page__back-wrapper">
