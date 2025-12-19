@@ -3,6 +3,18 @@
     width: min(100%, 1200px);
 }
 
+.post-page__progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), #a855f7);
+    z-index: 1000;
+    transition: width 0.1s ease-out;
+    border-radius: 0 2px 2px 0;
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
 .post-page__panel {
     background: var(--card-bg);
     border: 1px solid var(--card-border);

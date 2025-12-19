@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
@@ -17,6 +17,19 @@ function PostPage() {
     const [content, setContent] = useState('');
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [scrollProgress, setScrollProgress] = useState(0);
+
+    const handleScroll = useCallback(() => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        setScrollProgress(progress);
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [handleScroll]);
 
     useEffect(() => {
         const loadPost = async () => {
@@ -74,6 +87,7 @@ function PostPage() {
 
     return (
         <section className="post-page">
+            <div className="post-page__progress-bar" style={{ width: `${scrollProgress}%` }} />
             <div className="post-page__panel">
                 <div className="post-page__back-wrapper">
                     <button type="button" className="post-page__back" onClick={() => navigate('/posts')}>
