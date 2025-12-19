@@ -7,14 +7,44 @@
   flex-direction: column;
   background: var(--app-bg);
   color: var(--text-color);
-  overflow-y: scroll; /* Allow vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: overlay; /* Use overlay scrollbar (no arrows) */
   -webkit-overflow-scrolling: touch; /* For smooth scrolling on mobile */
-  scrollbar-width: none; /* For Firefox */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: var(--accent-color) transparent;
   transition: color 0.3s ease, background 0.3s ease;
 }
 
 .App::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and WebKit-based browsers */
+  width: 10px;
+}
+
+.App::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.App::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent-color), #a855f7);
+  border-radius: 10px;
+}
+
+.App::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6d28d9, #9333ea);
+}
+
+.App::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.App::-webkit-scrollbar-button:start:decrement,
+.App::-webkit-scrollbar-button:end:increment {
+  display: none;
+}
+
+.App::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 /* Main content area */

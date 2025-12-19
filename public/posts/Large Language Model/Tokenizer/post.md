@@ -51,13 +51,8 @@ s = "I   love   NLP   and  LLMs!"
 print(basic_whitespace_tokenize(s))
 ```
 
-<div class="notebook-output">
-
-```
-['I', 'love', 'NLP', 'and', 'LLMs!']
-```
-
-</div>
+<div class="notebook-output"><pre><code>[&#039;I&#039;, &#039;love&#039;, &#039;NLP&#039;, &#039;and&#039;, &#039;LLMs!&#039;]
+</code></pre></div>
 
 ### Regex word tokenizer (word-level with punctuation handling)
 Keep words and numbers, drop most punctuation.
@@ -77,13 +72,8 @@ s = "I love NLP, don't you? It's 2025."
 print(regex_word_tokenize(s))
 ```
 
-<div class="notebook-output">
-
-```
-['I', 'love', 'NLP', "don't", 'you', "It's", '2025']
-```
-
-</div>
+<div class="notebook-output"><pre><code>[&#039;I&#039;, &#039;love&#039;, &#039;NLP&#039;, &quot;don&#039;t&quot;, &#039;you&#039;, &quot;It&#039;s&quot;, &#039;2025&#039;]
+</code></pre></div>
 
 ### Character-level tokenizer
 Every character is a token. Simple and sometimes useful for experiments.
@@ -95,13 +85,8 @@ s = "I love NLP, don't you? It's 2025."
 print(char_tokenize(s))
 ```
 
-<div class="notebook-output">
-
-```
-['I', ' ', 'l', 'o', 'v', 'e', ' ', 'N', 'L', 'P', ',', ' ', 'd', 'o', 'n', "'", 't', ' ', 'y', 'o', 'u', '?', ' ', 'I', 't', "'", 's', ' ', '2', '0', '2', '5', '.']
-```
-
-</div>
+<div class="notebook-output"><pre><code>[&#039;I&#039;, &#039; &#039;, &#039;l&#039;, &#039;o&#039;, &#039;v&#039;, &#039;e&#039;, &#039; &#039;, &#039;N&#039;, &#039;L&#039;, &#039;P&#039;, &#039;,&#039;, &#039; &#039;, &#039;d&#039;, &#039;o&#039;, &#039;n&#039;, &quot;&#039;&quot;, &#039;t&#039;, &#039; &#039;, &#039;y&#039;, &#039;o&#039;, &#039;u&#039;, &#039;?&#039;, &#039; &#039;, &#039;I&#039;, &#039;t&#039;, &quot;&#039;&quot;, &#039;s&#039;, &#039; &#039;, &#039;2&#039;, &#039;0&#039;, &#039;2&#039;, &#039;5&#039;, &#039;.&#039;]
+</code></pre></div>
 
 ### Byte-level tokenizer
 Some LLMs (like GPT-2) operate over bytes or byte-BPE. At the simplest level:
@@ -118,13 +103,8 @@ tokens = byte_tokenize(s)
 print(tokens)
 ```
 
-<div class="notebook-output">
-
-```
-[72, 101, 108, 108, 111, 32, 240, 159, 152, 138, 46, 32, 73, 32, 108, 111, 118, 101, 32, 78, 76, 80, 44, 32, 100, 111, 110, 39, 116, 32, 121, 111, 117, 63, 32, 73, 116, 39, 115, 32, 50, 48, 50, 53, 46]
-```
-
-</div>
+<div class="notebook-output"><pre><code>[72, 101, 108, 108, 111, 32, 240, 159, 152, 138, 46, 32, 73, 32, 108, 111, 118, 101, 32, 78, 76, 80, 44, 32, 100, 111, 110, 39, 116, 32, 121, 111, 117, 63, 32, 73, 116, 39, 115, 32, 50, 48, 50, 53, 46]
+</code></pre></div>
 
 ### Subword BPE tokenizer
 
@@ -353,31 +333,26 @@ vocab_out = merge_vocab(best_pair, vocab)
 print("Merged vocab:", vocab_out)
 ```
 
-<div class="notebook-output">
-
-```
-Initial vocabulary: {
-    "l o w </w>": 4,
-    "l o w e r </w>": 1,
-    "n e w e s t </w>": 1,
-    "w i d e s t </w>": 2,
-    "n e w </w>": 2,
-    "w i d e r </w>": 1,
-    "l o w e s t </w>": 1,
-    "t y p e </w>": 1,
-    "h u m a n </w>": 1,
-    "p l a y e r </w>": 1,
-    "l i s t </w>": 1
+<div class="notebook-output"><pre><code>Initial vocabulary: {
+    &quot;l o w &lt;/w&gt;&quot;: 4,
+    &quot;l o w e r &lt;/w&gt;&quot;: 1,
+    &quot;n e w e s t &lt;/w&gt;&quot;: 1,
+    &quot;w i d e s t &lt;/w&gt;&quot;: 2,
+    &quot;n e w &lt;/w&gt;&quot;: 2,
+    &quot;w i d e r &lt;/w&gt;&quot;: 1,
+    &quot;l o w e s t &lt;/w&gt;&quot;: 1,
+    &quot;t y p e &lt;/w&gt;&quot;: 1,
+    &quot;h u m a n &lt;/w&gt;&quot;: 1,
+    &quot;p l a y e r &lt;/w&gt;&quot;: 1,
+    &quot;l i s t &lt;/w&gt;&quot;: 1
 }
 
-Pair frequency: Counter({('l', 'o'): 6, ('o', 'w'): 6, ('w', '</w>'): 6, ('s', 't'): 5, ('t', '</w>'): 5, ('e', 's'): 4, ('w', 'e'): 3, ('e', 'r'): 3, ('r', '</w>'): 3, ('n', 'e'): 3, ('e', 'w'): 3, ('w', 'i'): 3, ('i', 'd'): 3, ('d', 'e'): 3, ('t', 'y'): 1, ('y', 'p'): 1, ('p', 'e'): 1, ('e', '</w>'): 1, ('h', 'u'): 1, ('u', 'm'): 1, ('m', 'a'): 1, ('a', 'n'): 1, ('n', '</w>'): 1, ('p', 'l'): 1, ('l', 'a'): 1, ('a', 'y'): 1, ('y', 'e'): 1, ('l', 'i'): 1, ('i', 's'): 1}) 
+Pair frequency: Counter({(&#039;l&#039;, &#039;o&#039;): 6, (&#039;o&#039;, &#039;w&#039;): 6, (&#039;w&#039;, &#039;&lt;/w&gt;&#039;): 6, (&#039;s&#039;, &#039;t&#039;): 5, (&#039;t&#039;, &#039;&lt;/w&gt;&#039;): 5, (&#039;e&#039;, &#039;s&#039;): 4, (&#039;w&#039;, &#039;e&#039;): 3, (&#039;e&#039;, &#039;r&#039;): 3, (&#039;r&#039;, &#039;&lt;/w&gt;&#039;): 3, (&#039;n&#039;, &#039;e&#039;): 3, (&#039;e&#039;, &#039;w&#039;): 3, (&#039;w&#039;, &#039;i&#039;): 3, (&#039;i&#039;, &#039;d&#039;): 3, (&#039;d&#039;, &#039;e&#039;): 3, (&#039;t&#039;, &#039;y&#039;): 1, (&#039;y&#039;, &#039;p&#039;): 1, (&#039;p&#039;, &#039;e&#039;): 1, (&#039;e&#039;, &#039;&lt;/w&gt;&#039;): 1, (&#039;h&#039;, &#039;u&#039;): 1, (&#039;u&#039;, &#039;m&#039;): 1, (&#039;m&#039;, &#039;a&#039;): 1, (&#039;a&#039;, &#039;n&#039;): 1, (&#039;n&#039;, &#039;&lt;/w&gt;&#039;): 1, (&#039;p&#039;, &#039;l&#039;): 1, (&#039;l&#039;, &#039;a&#039;): 1, (&#039;a&#039;, &#039;y&#039;): 1, (&#039;y&#039;, &#039;e&#039;): 1, (&#039;l&#039;, &#039;i&#039;): 1, (&#039;i&#039;, &#039;s&#039;): 1}) 
 
-Max frequency: (('l', 'o'), 6)
+Max frequency: ((&#039;l&#039;, &#039;o&#039;), 6)
 
-Merged vocab: {'lo w </w>': 4, 'lo w e r </w>': 1, 'n e w e s t </w>': 1, 'w i d e s t </w>': 2, 'n e w </w>': 2, 'w i d e r </w>': 1, 'lo w e s t </w>': 1, 't y p e </w>': 1, 'h u m a n </w>': 1, 'p l a y e r </w>': 1, 'l i s t </w>': 1}
-```
-
-</div>
+Merged vocab: {&#039;lo w &lt;/w&gt;&#039;: 4, &#039;lo w e r &lt;/w&gt;&#039;: 1, &#039;n e w e s t &lt;/w&gt;&#039;: 1, &#039;w i d e s t &lt;/w&gt;&#039;: 2, &#039;n e w &lt;/w&gt;&#039;: 2, &#039;w i d e r &lt;/w&gt;&#039;: 1, &#039;lo w e s t &lt;/w&gt;&#039;: 1, &#039;t y p e &lt;/w&gt;&#039;: 1, &#039;h u m a n &lt;/w&gt;&#039;: 1, &#039;p l a y e r &lt;/w&gt;&#039;: 1, &#039;l i s t &lt;/w&gt;&#039;: 1}
+</code></pre></div>
 
 ```python
 merges, merge_ranks = train_bpe(corpus, target_vocab_size=1000, verbose=True)
@@ -386,49 +361,44 @@ print(f"Merges: {merges}\n")
 print(f"Merge rank: {merge_ranks}\n")
 ```
 
-<div class="notebook-output">
+<div class="notebook-output"><pre><code>Merge 1: (&#039;l&#039;, &#039;o&#039;) (count=6)
+Merge 2: (&#039;lo&#039;, &#039;w&#039;) (count=6)
+Merge 3: (&#039;s&#039;, &#039;t&#039;) (count=5)
+Merge 4: (&#039;st&#039;, &#039;&lt;/w&gt;&#039;) (count=5)
+Merge 5: (&#039;low&#039;, &#039;&lt;/w&gt;&#039;) (count=4)
+Merge 6: (&#039;e&#039;, &#039;st&lt;/w&gt;&#039;) (count=4)
+Merge 7: (&#039;e&#039;, &#039;r&#039;) (count=3)
+Merge 8: (&#039;er&#039;, &#039;&lt;/w&gt;&#039;) (count=3)
+Merge 9: (&#039;n&#039;, &#039;e&#039;) (count=3)
+Merge 10: (&#039;ne&#039;, &#039;w&#039;) (count=3)
+Merge 11: (&#039;w&#039;, &#039;i&#039;) (count=3)
+Merge 12: (&#039;wi&#039;, &#039;d&#039;) (count=3)
+Merge 13: (&#039;wid&#039;, &#039;est&lt;/w&gt;&#039;) (count=2)
+Merge 14: (&#039;new&#039;, &#039;&lt;/w&gt;&#039;) (count=2)
+Merge 15: (&#039;low&#039;, &#039;er&lt;/w&gt;&#039;) (count=1)
+Merge 16: (&#039;new&#039;, &#039;est&lt;/w&gt;&#039;) (count=1)
+Merge 17: (&#039;wid&#039;, &#039;er&lt;/w&gt;&#039;) (count=1)
+Merge 18: (&#039;low&#039;, &#039;est&lt;/w&gt;&#039;) (count=1)
+Merge 19: (&#039;t&#039;, &#039;y&#039;) (count=1)
+Merge 20: (&#039;ty&#039;, &#039;p&#039;) (count=1)
+Merge 21: (&#039;typ&#039;, &#039;e&#039;) (count=1)
+Merge 22: (&#039;type&#039;, &#039;&lt;/w&gt;&#039;) (count=1)
+Merge 23: (&#039;h&#039;, &#039;u&#039;) (count=1)
+Merge 24: (&#039;hu&#039;, &#039;m&#039;) (count=1)
+Merge 25: (&#039;hum&#039;, &#039;a&#039;) (count=1)
+Merge 26: (&#039;huma&#039;, &#039;n&#039;) (count=1)
+Merge 27: (&#039;human&#039;, &#039;&lt;/w&gt;&#039;) (count=1)
+Merge 28: (&#039;p&#039;, &#039;l&#039;) (count=1)
+Merge 29: (&#039;pl&#039;, &#039;a&#039;) (count=1)
+Merge 30: (&#039;pla&#039;, &#039;y&#039;) (count=1)
+Merge 31: (&#039;play&#039;, &#039;er&lt;/w&gt;&#039;) (count=1)
+Merge 32: (&#039;l&#039;, &#039;i&#039;) (count=1)
+Merge 33: (&#039;li&#039;, &#039;st&lt;/w&gt;&#039;) (count=1)
+Merges: [(&#039;l&#039;, &#039;o&#039;), (&#039;lo&#039;, &#039;w&#039;), (&#039;s&#039;, &#039;t&#039;), (&#039;st&#039;, &#039;&lt;/w&gt;&#039;), (&#039;low&#039;, &#039;&lt;/w&gt;&#039;), (&#039;e&#039;, &#039;st&lt;/w&gt;&#039;), (&#039;e&#039;, &#039;r&#039;), (&#039;er&#039;, &#039;&lt;/w&gt;&#039;), (&#039;n&#039;, &#039;e&#039;), (&#039;ne&#039;, &#039;w&#039;), (&#039;w&#039;, &#039;i&#039;), (&#039;wi&#039;, &#039;d&#039;), (&#039;wid&#039;, &#039;est&lt;/w&gt;&#039;), (&#039;new&#039;, &#039;&lt;/w&gt;&#039;), (&#039;low&#039;, &#039;er&lt;/w&gt;&#039;), (&#039;new&#039;, &#039;est&lt;/w&gt;&#039;), (&#039;wid&#039;, &#039;er&lt;/w&gt;&#039;), (&#039;low&#039;, &#039;est&lt;/w&gt;&#039;), (&#039;t&#039;, &#039;y&#039;), (&#039;ty&#039;, &#039;p&#039;), (&#039;typ&#039;, &#039;e&#039;), (&#039;type&#039;, &#039;&lt;/w&gt;&#039;), (&#039;h&#039;, &#039;u&#039;), (&#039;hu&#039;, &#039;m&#039;), (&#039;hum&#039;, &#039;a&#039;), (&#039;huma&#039;, &#039;n&#039;), (&#039;human&#039;, &#039;&lt;/w&gt;&#039;), (&#039;p&#039;, &#039;l&#039;), (&#039;pl&#039;, &#039;a&#039;), (&#039;pla&#039;, &#039;y&#039;), (&#039;play&#039;, &#039;er&lt;/w&gt;&#039;), (&#039;l&#039;, &#039;i&#039;), (&#039;li&#039;, &#039;st&lt;/w&gt;&#039;)]
 
-```
-Merge 1: ('l', 'o') (count=6)
-Merge 2: ('lo', 'w') (count=6)
-Merge 3: ('s', 't') (count=5)
-Merge 4: ('st', '</w>') (count=5)
-Merge 5: ('low', '</w>') (count=4)
-Merge 6: ('e', 'st</w>') (count=4)
-Merge 7: ('e', 'r') (count=3)
-Merge 8: ('er', '</w>') (count=3)
-Merge 9: ('n', 'e') (count=3)
-Merge 10: ('ne', 'w') (count=3)
-Merge 11: ('w', 'i') (count=3)
-Merge 12: ('wi', 'd') (count=3)
-Merge 13: ('wid', 'est</w>') (count=2)
-Merge 14: ('new', '</w>') (count=2)
-Merge 15: ('low', 'er</w>') (count=1)
-Merge 16: ('new', 'est</w>') (count=1)
-Merge 17: ('wid', 'er</w>') (count=1)
-Merge 18: ('low', 'est</w>') (count=1)
-Merge 19: ('t', 'y') (count=1)
-Merge 20: ('ty', 'p') (count=1)
-Merge 21: ('typ', 'e') (count=1)
-Merge 22: ('type', '</w>') (count=1)
-Merge 23: ('h', 'u') (count=1)
-Merge 24: ('hu', 'm') (count=1)
-Merge 25: ('hum', 'a') (count=1)
-Merge 26: ('huma', 'n') (count=1)
-Merge 27: ('human', '</w>') (count=1)
-Merge 28: ('p', 'l') (count=1)
-Merge 29: ('pl', 'a') (count=1)
-Merge 30: ('pla', 'y') (count=1)
-Merge 31: ('play', 'er</w>') (count=1)
-Merge 32: ('l', 'i') (count=1)
-Merge 33: ('li', 'st</w>') (count=1)
-Merges: [('l', 'o'), ('lo', 'w'), ('s', 't'), ('st', '</w>'), ('low', '</w>'), ('e', 'st</w>'), ('e', 'r'), ('er', '</w>'), ('n', 'e'), ('ne', 'w'), ('w', 'i'), ('wi', 'd'), ('wid', 'est</w>'), ('new', '</w>'), ('low', 'er</w>'), ('new', 'est</w>'), ('wid', 'er</w>'), ('low', 'est</w>'), ('t', 'y'), ('ty', 'p'), ('typ', 'e'), ('type', '</w>'), ('h', 'u'), ('hu', 'm'), ('hum', 'a'), ('huma', 'n'), ('human', '</w>'), ('p', 'l'), ('pl', 'a'), ('pla', 'y'), ('play', 'er</w>'), ('l', 'i'), ('li', 'st</w>')]
+Merge rank: {(&#039;l&#039;, &#039;o&#039;): 0, (&#039;lo&#039;, &#039;w&#039;): 1, (&#039;s&#039;, &#039;t&#039;): 2, (&#039;st&#039;, &#039;&lt;/w&gt;&#039;): 3, (&#039;low&#039;, &#039;&lt;/w&gt;&#039;): 4, (&#039;e&#039;, &#039;st&lt;/w&gt;&#039;): 5, (&#039;e&#039;, &#039;r&#039;): 6, (&#039;er&#039;, &#039;&lt;/w&gt;&#039;): 7, (&#039;n&#039;, &#039;e&#039;): 8, (&#039;ne&#039;, &#039;w&#039;): 9, (&#039;w&#039;, &#039;i&#039;): 10, (&#039;wi&#039;, &#039;d&#039;): 11, (&#039;wid&#039;, &#039;est&lt;/w&gt;&#039;): 12, (&#039;new&#039;, &#039;&lt;/w&gt;&#039;): 13, (&#039;low&#039;, &#039;er&lt;/w&gt;&#039;): 14, (&#039;new&#039;, &#039;est&lt;/w&gt;&#039;): 15, (&#039;wid&#039;, &#039;er&lt;/w&gt;&#039;): 16, (&#039;low&#039;, &#039;est&lt;/w&gt;&#039;): 17, (&#039;t&#039;, &#039;y&#039;): 18, (&#039;ty&#039;, &#039;p&#039;): 19, (&#039;typ&#039;, &#039;e&#039;): 20, (&#039;type&#039;, &#039;&lt;/w&gt;&#039;): 21, (&#039;h&#039;, &#039;u&#039;): 22, (&#039;hu&#039;, &#039;m&#039;): 23, (&#039;hum&#039;, &#039;a&#039;): 24, (&#039;huma&#039;, &#039;n&#039;): 25, (&#039;human&#039;, &#039;&lt;/w&gt;&#039;): 26, (&#039;p&#039;, &#039;l&#039;): 27, (&#039;pl&#039;, &#039;a&#039;): 28, (&#039;pla&#039;, &#039;y&#039;): 29, (&#039;play&#039;, &#039;er&lt;/w&gt;&#039;): 30, (&#039;l&#039;, &#039;i&#039;): 31, (&#039;li&#039;, &#039;st&lt;/w&gt;&#039;): 32}
 
-Merge rank: {('l', 'o'): 0, ('lo', 'w'): 1, ('s', 't'): 2, ('st', '</w>'): 3, ('low', '</w>'): 4, ('e', 'st</w>'): 5, ('e', 'r'): 6, ('er', '</w>'): 7, ('n', 'e'): 8, ('ne', 'w'): 9, ('w', 'i'): 10, ('wi', 'd'): 11, ('wid', 'est</w>'): 12, ('new', '</w>'): 13, ('low', 'er</w>'): 14, ('new', 'est</w>'): 15, ('wid', 'er</w>'): 16, ('low', 'est</w>'): 17, ('t', 'y'): 18, ('ty', 'p'): 19, ('typ', 'e'): 20, ('type', '</w>'): 21, ('h', 'u'): 22, ('hu', 'm'): 23, ('hum', 'a'): 24, ('huma', 'n'): 25, ('human', '</w>'): 26, ('p', 'l'): 27, ('pl', 'a'): 28, ('pla', 'y'): 29, ('play', 'er</w>'): 30, ('l', 'i'): 31, ('li', 'st</w>'): 32}
-
-```
-
-</div>
+</code></pre></div>
 
 #### Decoding
 
@@ -579,37 +549,32 @@ word_token = bpe_encode_word(word, merge_ranks, verbose=True)
 print(f"word token: {word_token}\n")
 ```
 
-<div class="notebook-output">
-
-```
-('n', 'e', 'w', 'e', 'r', '</w>')
+<div class="notebook-output"><pre><code>(&#039;n&#039;, &#039;e&#039;, &#039;w&#039;, &#039;e&#039;, &#039;r&#039;, &#039;&lt;/w&gt;&#039;)
 first: e, second: r
-new word: ['n']
-new word 2: ['n', 'e']
-new word: ['n', 'e', 'w']
-new word 2: ['n', 'e', 'w', 'er']
+new word: [&#039;n&#039;]
+new word 2: [&#039;n&#039;, &#039;e&#039;]
+new word: [&#039;n&#039;, &#039;e&#039;, &#039;w&#039;]
+new word 2: [&#039;n&#039;, &#039;e&#039;, &#039;w&#039;, &#039;er&#039;]
 out new word
-('n', 'e', 'w', 'er', '</w>')
-first: er, second: </w>
-new word: ['n', 'e', 'w']
-new word 2: ['n', 'e', 'w', 'er</w>']
+(&#039;n&#039;, &#039;e&#039;, &#039;w&#039;, &#039;er&#039;, &#039;&lt;/w&gt;&#039;)
+first: er, second: &lt;/w&gt;
+new word: [&#039;n&#039;, &#039;e&#039;, &#039;w&#039;]
+new word 2: [&#039;n&#039;, &#039;e&#039;, &#039;w&#039;, &#039;er&lt;/w&gt;&#039;]
 out new word
-('n', 'e', 'w', 'er</w>')
+(&#039;n&#039;, &#039;e&#039;, &#039;w&#039;, &#039;er&lt;/w&gt;&#039;)
 first: n, second: e
 new word: []
-new word 2: ['ne']
+new word 2: [&#039;ne&#039;]
 out new word
-('ne', 'w', 'er</w>')
+(&#039;ne&#039;, &#039;w&#039;, &#039;er&lt;/w&gt;&#039;)
 first: ne, second: w
 new word: []
-new word 2: ['new']
+new word 2: [&#039;new&#039;]
 out new word
-('new', 'er</w>')
-word token: ('new', 'er</w>')
+(&#039;new&#039;, &#039;er&lt;/w&gt;&#039;)
+word token: (&#039;new&#039;, &#039;er&lt;/w&gt;&#039;)
 
-```
-
-</div>
+</code></pre></div>
 
 ```python
 text = "lowest newer wider"
@@ -620,18 +585,13 @@ decode_token = bpe_decode_tokens(text_tokens)
 print(f"decode token: {decode_token}\n")
 ```
 
-<div class="notebook-output">
+<div class="notebook-output"><pre><code>word token: (&#039;new&#039;, &#039;er&lt;/w&gt;&#039;)
 
-```
-word token: ('new', 'er</w>')
-
-text token: ['lowest</w>', 'new', 'er</w>', 'wider</w>']
+text token: [&#039;lowest&lt;/w&gt;&#039;, &#039;new&#039;, &#039;er&lt;/w&gt;&#039;, &#039;wider&lt;/w&gt;&#039;]
 
 decode token: lowest newer wider
 
-```
-
-</div>
+</code></pre></div>
 
 #### Tokenizer
 
@@ -723,33 +683,28 @@ print("TOKENS (loaded): ", tokens2)
 print("DECODED (loaded):", decoded2)
 ```
 
-<div class="notebook-output">
-
-```
-Merge 1: ('l', 'o') (count=6)
-Merge 2: ('lo', 'w') (count=6)
-Merge 3: ('low', '</w>') (count=4)
-Merge 4: ('e', 's') (count=4)
-Merge 5: ('es', 't') (count=4)
-Merge 6: ('est', '</w>') (count=4)
-Merge 7: ('w', 'i') (count=3)
-Merge 8: ('wi', 'd') (count=3)
-Merge 9: ('e', 'r') (count=2)
-Merge 10: ('er', '</w>') (count=2)
-Merge 11: ('n', 'e') (count=2)
-Merge 12: ('ne', 'w') (count=2)
-Merge 13: ('wid', 'est</w>') (count=2)
-Merge 14: ('low', 'er</w>') (count=1)
-Merge 15: ('new', 'est</w>') (count=1)
-Merge 16: ('new', '</w>') (count=1)
-Merge 17: ('wid', 'er</w>') (count=1)
-Merge 18: ('low', 'est</w>') (count=1)
+<div class="notebook-output"><pre><code>Merge 1: (&#039;l&#039;, &#039;o&#039;) (count=6)
+Merge 2: (&#039;lo&#039;, &#039;w&#039;) (count=6)
+Merge 3: (&#039;low&#039;, &#039;&lt;/w&gt;&#039;) (count=4)
+Merge 4: (&#039;e&#039;, &#039;s&#039;) (count=4)
+Merge 5: (&#039;es&#039;, &#039;t&#039;) (count=4)
+Merge 6: (&#039;est&#039;, &#039;&lt;/w&gt;&#039;) (count=4)
+Merge 7: (&#039;w&#039;, &#039;i&#039;) (count=3)
+Merge 8: (&#039;wi&#039;, &#039;d&#039;) (count=3)
+Merge 9: (&#039;e&#039;, &#039;r&#039;) (count=2)
+Merge 10: (&#039;er&#039;, &#039;&lt;/w&gt;&#039;) (count=2)
+Merge 11: (&#039;n&#039;, &#039;e&#039;) (count=2)
+Merge 12: (&#039;ne&#039;, &#039;w&#039;) (count=2)
+Merge 13: (&#039;wid&#039;, &#039;est&lt;/w&gt;&#039;) (count=2)
+Merge 14: (&#039;low&#039;, &#039;er&lt;/w&gt;&#039;) (count=1)
+Merge 15: (&#039;new&#039;, &#039;est&lt;/w&gt;&#039;) (count=1)
+Merge 16: (&#039;new&#039;, &#039;&lt;/w&gt;&#039;) (count=1)
+Merge 17: (&#039;wid&#039;, &#039;er&lt;/w&gt;&#039;) (count=1)
+Merge 18: (&#039;low&#039;, &#039;est&lt;/w&gt;&#039;) (count=1)
 TEXT:    lowest newer wider
-TOKENS:  ['lowest</w>', 'new', 'er</w>', 'wider</w>']
+TOKENS:  [&#039;lowest&lt;/w&gt;&#039;, &#039;new&#039;, &#039;er&lt;/w&gt;&#039;, &#039;wider&lt;/w&gt;&#039;]
 DECODED: lowest newer wider
-TOKENS (loaded):  ['lowest</w>', 'new', 'er</w>', 'wider</w>']
+TOKENS (loaded):  [&#039;lowest&lt;/w&gt;&#039;, &#039;new&#039;, &#039;er&lt;/w&gt;&#039;, &#039;wider&lt;/w&gt;&#039;]
 DECODED (loaded): lowest newer wider
-```
-
-</div>
+</code></pre></div>
 

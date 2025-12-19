@@ -21,6 +21,18 @@ const path = require('path');
 
 const POSTS_DIR = path.join(__dirname, '..', 'public', 'posts');
 
+/**
+ * Escape HTML special characters to prevent rendering issues
+ */
+function escapeHtml(text) {
+    return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 function findNotebooks(dir) {
     const notebooks = [];
 
@@ -187,24 +199,25 @@ function convertNotebookToMarkdown(notebookPath) {
                 if (output.output_type === 'stream') {
                     const text = Array.isArray(output.text) ? output.text.join('') : output.text;
                     if (text.trim()) {
-                        markdownParts.push('<div class="notebook-output">\n\n```\n');
-                        markdownParts.push(text);
-                        if (!text.endsWith('\n')) {
-                            markdownParts.push('\n');
-                        }
-                        markdownParts.push('```\n\n</div>\n\n');
+                        // Use HTML pre/code tags since markdown code fences don't work inside HTML divs
+                        const escapedText = escapeHtml(text);
+                        markdownParts.push(`<div class="notebook-output"><pre><code>${escapedText}</code></pre></div>\n\n`);
                     }
                 } else if (output.output_type === 'execute_result' || output.output_type === 'display_data') {
                     const text = extractTextFromOutput(output);
                     if (text.trim()) {
-                        markdownParts.push('<div class="notebook-output">\n\n');
-                        markdownParts.push(text);
-                        markdownParts.push('\n\n</div>\n\n');
+                        // Check if it's already HTML (like notebook-html-output)
+                        if (text.includes('<div class="notebook-html-output">')) {
+                            markdownParts.push(`<div class="notebook-output">${text}</div>\n\n`);
+                        } else {
+                            const escapedText = escapeHtml(text);
+                            markdownParts.push(`<div class="notebook-output"><pre><code>${escapedText}</code></pre></div>\n\n`);
+                        }
                     }
                 } else if (output.output_type === 'error') {
-                    markdownParts.push('<div class="notebook-error">\n\n```\n');
-                    markdownParts.push((output.traceback || []).join('\n'));
-                    markdownParts.push('\n```\n\n</div>\n\n');
+                    const errorText = (output.traceback || []).join('\n');
+                    const escapedText = escapeHtml(errorText);
+                    markdownParts.push(`<div class="notebook-error"><pre><code>${escapedText}</code></pre></div>\n\n`);
                 }
             }
         }

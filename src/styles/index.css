@@ -54,7 +54,7 @@ html, body {
   height: 100%; /* Ensure the body and html take up the full viewport */
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow: hidden; /* Let .App handle scrolling */
 }
 
 body {
@@ -69,3 +69,4 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
